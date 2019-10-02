@@ -1,0 +1,44 @@
+import wollok.game.*
+import personajes.*
+import cosas.*
+
+
+program game {
+
+/********************************************* CONFIG *********************************************/	
+	game.title("BattleRun")
+	game.height(10)
+	game.width(10)
+	game.ground("fondo.jpg") // poner nombre
+	
+	
+	
+/********************************************* VISUALES *********************************************/
+	game.addVisualCharacter(personaje)
+	game.addVisual(new Enemigo())
+	game.addVisual(new Vida())
+	game.addVisual(new Armadura())
+	game.addVisual(new Danio())
+
+/********************************************* KEYBOARD *********************************************/
+
+// *actions
+	keyboard.a().onPressDo ({ personaje.agarra(game.colliders(personaje)) })
+	
+	/*
+	keyboard.t().onPressDo ({ hector.sembraTrigo() })
+	
+	keyboard.o().onPressDo ({ hector.sembraTomaco() })
+	
+	keyboard.r().onPressDo ({ hector.rega() })
+
+	keyboard.c().onPressDo ({ hector.cosecha() })
+
+	keyboard.v().onPressDo ({ hector.vende() })	
+	
+	keyboard.space().onPressDo ({ hector.estoEsLoQueTengo() })
+	*/
+	
+/********************************************* START *********************************************/
+	game.start()
+}
