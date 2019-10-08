@@ -1,7 +1,9 @@
 import wollok.game.*
 import cosas.*
+/***************************************************************************************************/
+/*  LO HICE MÁS ABAJO COMO UN OBJETO QUE HEREDA DE LA CLASE "PERSONAJES" PARA NO REPETIR CÓDIGO
 
-object personaje {
+ 	object personaje {
 	var property vida = 0
 	var property armadura = 0
 	var property danio = 0
@@ -31,14 +33,16 @@ object personaje {
 	}
 }
 
+*/
 
 
-class Enemigo{
+/***************************************************************************************************/
+class Personaje{
 	var property vida
 	var property armadura
 	var property danio
-	var property position = (game.at(9,9)) //ver tamaño del mapa
-	var property image = "pepita1.png" //agregar imagen
+	var property position //= (game.at(9,9)) //ver tamaño del mapa
+	var property image //= "pepita1.png" //agregar imagen
 	
 	method hayCosa() = game.getObjectsIn(self.position()).size() == 2
 	
@@ -81,4 +85,11 @@ class Enemigo{
 	method agregarDanio(_danio){
 		danio += _danio
 	}
+}
+
+
+/***************************************************************************************************/
+
+class Principal inherits Personaje{
+	
 }
