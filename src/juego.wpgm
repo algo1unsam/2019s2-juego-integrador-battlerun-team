@@ -12,7 +12,7 @@ program game {
 	game.ground("fondo.jpg") // poner nombre
 	
 	var personaje = new Principal(vida = 100, armadura = 0, danio = 15, position = game.at(0,0), image = "pepita.png")
-	var enemigo = new Personaje(vida = 100, armadura = 0, danio = 15, position = game.at(5,9), image = "pepita.png")
+	var enemigo = new Enemigo(vida = 100, armadura = 0, danio = 15, position = game.at(5,9), image = "pepita.png")
 	
 	
 /********************************************* VISUALS *********************************************/
@@ -42,8 +42,8 @@ program game {
 	*/
 	
 /********************************************* INTERACTIONS *********************************************/
-game.onCollideDo (personaje, {unaCosa => unaCosa.chocasteCon(personaje) })
-game.onCollideDo (enemigo, {unaCosa => unaCosa.chocasteCon(enemigo) })
+game.onCollideDo (personaje, {algo => algo.teChoco(personaje) })
+game.onCollideDo (enemigo, {algo => algo.teChoco(enemigo) })
 
 	
 	

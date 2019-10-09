@@ -7,7 +7,7 @@ class Armadura{
 	var property image = "manzana.png" // poner imagen
 	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
 	
-	method teAgarro(alguien){
+	method teChoco(alguien){
 		alguien.agregarArmadura(armadura)
 		game.removeVisual(self)
 	}
@@ -20,7 +20,7 @@ class Danio{
 	var property image = "alpiste.png" // poner imagen
 	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
 	
-	method teAgarro(alguien){
+	method teChoco(alguien){
 		alguien.agregarDanio(danio)
 		game.removeVisual(self)
 	}
@@ -33,7 +33,7 @@ class Vida{
 	var property image = "ciudad.png" //poner imagen
 	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
 	
-	method teAgarro(alguien){
+	method teChoco(alguien){
 		alguien.agregarVida(vida)
 		game.removeVisual(self)
 	}

@@ -93,3 +93,9 @@ class Personaje{
 class Principal inherits Personaje{
 	
 }
+
+/***************************************************************************************************/
+
+class Enemigo inherits Personaje{
+	
+}
