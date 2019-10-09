@@ -4,7 +4,7 @@ import personajes.*
 /***************************************************************************************************/
 class Armadura{
 	var property armadura = 10
-	var property image = "manzana.png" // poner imagen
+	var property image = "armadura.png" // poner imagen
 	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
 	
 	method teChoco(alguien){
@@ -17,7 +17,7 @@ class Armadura{
 /***************************************************************************************************/
 class Danio{
 	var property danio = 10
-	var property image = "alpiste.png" // poner imagen
+	var property image = "daga.png" // poner imagen
 	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
 	
 	method teChoco(alguien){
@@ -30,7 +30,7 @@ class Danio{
 /***************************************************************************************************/
 class Vida{
 	var property vida = 10
-	var property image = "ciudad.png" //poner imagen
+	var property image = "pocion.png" //poner imagen
 	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
 	
 	method teChoco(alguien){

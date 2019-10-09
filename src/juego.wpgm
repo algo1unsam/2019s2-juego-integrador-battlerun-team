@@ -9,10 +9,10 @@ program game {
 	game.title("BattleRun")
 	game.height(10)
 	game.width(10)
-	game.ground("fondo.jpg") // poner nombre
+	game.ground("piso.png") // poner nombre
 	
-	var personaje = new Principal(vida = 100, armadura = 0, danio = 15, position = game.at(0,0), image = "pepita.png")
-	var enemigo = new Enemigo(vida = 100, armadura = 0, danio = 15, position = game.at(5,9), image = "pepita.png")
+	var personaje = new Principal(vida = 100, armadura = 0, danio = 15, position = game.at(0,0), image = "PLAYER.png")
+	var enemigo = new Enemigo(vida = 100, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
 	
 	
 /********************************************* VISUALS *********************************************/
