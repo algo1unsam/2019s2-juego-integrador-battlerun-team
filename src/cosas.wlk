@@ -1,41 +1,58 @@
 import wollok.game.*
 import personajes.*
 
+
+class Cosa{
+	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9)))
+	
+	//paso intermedio para que sea mas legible. Cuando chocan una cosa, siempre la agarran.
+	method teChoco(alguien){
+		self.teAgarro(alguien)
+	}
+	
+	//Método para que sea todo más polimórfico, no hace nada en el caso de las "cosas"
+	method teAtaco(alguien){}
+	
+	//Mirar bien como funciona el lookUp
+	//Todos los items, cuando son agarrados, hacen algo y despues se van del mapa. Acá sólo está esa segunda parte (porque es comun a todos)
+	method teAgarro(alguien){
+		game.removeVisual(self)
+	}
+}
+
+
 /***************************************************************************************************/
-class Armadura{
+class Armadura inherits Cosa{
 	var property armadura = 10
-	var property image = "armadura.png" // poner imagen
-	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
+	var property image = "armadura.png"
 	
-	method teChoco(alguien){
+	override method teAgarro(alguien){
 		alguien.agregarArmadura(armadura)
-		game.removeVisual(self)
+		super(alguien)
 	}
 }
 
 
 /***************************************************************************************************/
-class Danio{
+class Danio inherits Cosa{
 	var property danio = 10
-	var property image = "daga.png" // poner imagen
-	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
+	var property image = "daga.png"
 	
-	method teChoco(alguien){
+	override method teAgarro(alguien){
 		alguien.agregarDanio(danio)
-		game.removeVisual(self)
+		super(alguien)
 	}
 }
 
 
 /***************************************************************************************************/
-class Vida{
+class Vida inherits Cosa{
 	var property vida = 10
-	var property image = "pocion.png" //poner imagen
-	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9))) // VER TAMAÑO DEL MAPA
+	var property image = "pocion.png"
 	
-	method teChoco(alguien){
+	override method teAgarro(alguien){
 		alguien.agregarVida(vida)
-		game.removeVisual(self)
+		super(alguien)
 	}
 }
 
