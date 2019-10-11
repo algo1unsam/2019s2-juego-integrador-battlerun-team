@@ -43,7 +43,7 @@ class Personaje{
 	var property danio
 	var property position
 	var property image 
-	
+	var property estoyMuerto = 0	//Esta var sirve de flag para que no haga ciertas cosas estando muerto
 	
 	
 	method hayCosa() = game.getObjectsIn(self.position()).size() == 2
@@ -71,18 +71,21 @@ class Personaje{
 	
 	//Hay que definir qué más pasa cuando se muere cada uno. (puede morir el principal o el enemigo) 
 	method teMataron(){
+		self.estoyMuerto(1)
 		game.removeVisual(self)
 		//game.end()
 	}
 	
 	//Método que se llama en un onCollideDo (ver .wpgm) cuando el ENEMIGO choca con algo. Cuando el "algo" es el principal, el enemigo lo ataca.
 	method teChoco(alguien){
-		self.teAtaco(alguien)
+		if(alguien.estoyMuerto() == 0) self.teAtaco(alguien)
 	}
 	
+	method danioRecibidoPor(alguien) = alguien.danio() - armadura
+	
 	method teAtaco(alguien){
-		vida -= (alguien.danio() - armadura)
-		if (vida < 0) self.teMataron()
+		if (self.danioRecibidoPor(alguien) > 0) vida -= self.danioRecibidoPor(alguien)
+		if (vida <= 0) self.teMataron()
 	}
 }
 
@@ -116,23 +119,23 @@ class Enemigo inherits Personaje{
 	method teAgarro(alguien){}
 	
 	
-/***************************************	REVEER  
-Se mueve en diagonal y son muchos if. De todas formas funciona y las 4 comparaciones son necesarias, así que creo que está bien
-*/
-method perseguiA(alguien){
-		if(self.position().x() > alguien.position().x()){
-			self.move(self.position().left(1))
-		}
-		if(self.position().x() < alguien.position().x()){
-			self.move(self.position().right(1))	
-		}
-		if(self.position().y() > alguien.position().y()){
-		self.move(self.position().down(1))
-		}
-		if(self.position().y() < alguien.position().y()){
-			self.move(self.position().up(1))	
+	/***************************************	REVEER  
+	Son muchos if. De todas formas funciona y las 4 comparaciones son necesarias, así que creo que está bien
+	*/
+	method perseguiA(alguien){
+			if(self.position().x() > alguien.position().x()){
+				self.move(self.position().left(1))
+			} 	else { 	if(self.position().y() > alguien.position().y()){
+						self.move(self.position().down(1))
+						}
+				else { 	if(self.position().x() < alguien.position().x()){
+						self.move(self.position().right(1))	
+						}	
+				else {	if(self.position().y() < alguien.position().y()){
+						self.move(self.position().up(1))	
+						}	
+				}
+			}		
 		}
 	}
-	
-	
 }

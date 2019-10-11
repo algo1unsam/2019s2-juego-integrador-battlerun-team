@@ -7,7 +7,7 @@ class Cosa{
 	
 	//paso intermedio para que sea mas legible. Cuando chocan una cosa, siempre la agarran.
 	method teChoco(alguien){
-		self.teAgarro(alguien)
+		if(alguien.estoyMuerto() == 0) self.teAgarro(alguien)
 	}
 	
 	//Método para que sea todo más polimórfico, no hace nada en el caso de las "cosas"
@@ -23,7 +23,7 @@ class Cosa{
 
 /***************************************************************************************************/
 class Armadura inherits Cosa{
-	var property armadura = 10
+	var property armadura = 20
 	var property image = "armadura.png"
 	
 	override method teAgarro(alguien){
@@ -34,8 +34,45 @@ class Armadura inherits Cosa{
 
 
 /***************************************************************************************************/
-class Danio inherits Cosa{
-	var property danio = 10
+class Casco inherits Cosa{
+	var property armadura = 5
+	var property image = "casco.png"
+	
+	override method teAgarro(alguien){
+		alguien.agregarArmadura(armadura)
+		super(alguien)
+	}
+}
+
+
+/***************************************************************************************************/
+class Escudo inherits Cosa{
+	var property armadura = 15
+	var property image = "escudo.png"
+	
+	override method teAgarro(alguien){
+		alguien.agregarArmadura(armadura)
+		super(alguien)
+	}
+}
+
+
+/***************************************************************************************************/
+class Botas inherits Cosa{
+	var property armadura = 5
+	var property image = "armadura.png"
+	
+	override method teAgarro(alguien){
+		alguien.agregarArmadura(armadura)
+		super(alguien)
+	}
+}
+
+
+
+/***************************************************************************************************/
+class Daga inherits Cosa{
+	var property danio = 15
 	var property image = "daga.png"
 	
 	override method teAgarro(alguien){
@@ -46,8 +83,33 @@ class Danio inherits Cosa{
 
 
 /***************************************************************************************************/
-class Vida inherits Cosa{
-	var property vida = 10
+class Espada inherits Cosa{
+	var property danio = 35
+	var property image = "espada.png"
+	
+	override method teAgarro(alguien){
+		alguien.agregarDanio(danio)
+		super(alguien)
+	}
+}
+
+
+/***************************************************************************************************/
+class Sable inherits Cosa{
+	var property danio = 45
+	var property image = "sable.png"
+	
+	override method teAgarro(alguien){
+		alguien.agregarDanio(danio)
+		super(alguien)
+	}
+}
+
+
+
+/***************************************************************************************************/
+class Pocion inherits Cosa{
+	var property vida = 50
 	var property image = "pocion.png"
 	
 	override method teAgarro(alguien){
