@@ -93,7 +93,7 @@ class Personaje{
 /***************************************************************************************************/
 
 class Principal inherits Personaje{
-	
+	var puedoAtacar = 1 // Esta variable se usa para un schedule en self.atacaA para no poder atacar muchas veces en poco tiempo
 	
 	//El "teAgarro(self)" es un paso intermedio (no hace absolutamente nada) que sirve para que sea más intuitivo a la hora de leer el codigo
 	//El método es activado al presionar la "a" (ver el .wpgm) y lo que hace es sumar la cosa sobre la que esta parado a su inventario. Si es el enemigo, no hace nada.
@@ -105,10 +105,14 @@ class Principal inherits Personaje{
 	
 	//Acá lo mismo que arriba, está este paso intermedio "teAtaco(self)" para que sea mas legible
 	//Con la tecla "x" (ver .wpgm) el personaje ataca al enemigo (tienen que estar en la misma posicion) si hay cualquier otra cosa que no sea el enemigo no hace nada
+	//Solo se puede atacar una vez cada 350ms, para que sea más parejo 
 	method atacaA(alguien){
-		alguien.teAtaco(self)
+		if(puedoAtacar == 1){
+			alguien.teAtaco(self)
+			puedoAtacar = 0
+			game.schedule(350, puedoAtacar = 1)
+		}
 	}
-	
 }
 
 /***************************************************************************************************/

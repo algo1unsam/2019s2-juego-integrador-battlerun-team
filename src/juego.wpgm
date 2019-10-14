@@ -8,10 +8,10 @@ program game {
 /********************************************* CONFIG *********************************************/	
 	game.title("BattleRun")
 	game.height(10)
-	game.width(10)
+	game.width(10) 
 	game.ground("piso.png")
 	
-	var personaje = new Principal(vida = 100, armadura = 0, danio = 15, position = game.at(0,0), image = "PLAYER.png")
+	var personaje = new Principal(vida = 1000, armadura = 0, danio = 15, position = game.at(0,0), image = "PLAYER.png")
 	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
 	var orco = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "orco.png")
 	
@@ -19,6 +19,13 @@ program game {
 	game.onTick(800, "Insecto sigue principal", {=> insecto.perseguiA(personaje)})
 	game.onTick(1100, "Orco sigue principal", {=> orco.perseguiA(personaje)})
 	
+	//Los enemigos están intentando golpear todo el tiempo, cada 500ms
+	//TIRA ERROR CUANDO SE MUEREN, NO PUEDO ENCONTRAR LA FALLA
+	if(orco.estoyMuerto() == 0) game.onTick(500, "OrcoGolpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
+	else game.removeTickEvent("OrcoGolpea") 
+	
+	if(insecto.estoyMuerto() == 0) game.onTick(500, "InsectoGolpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)})
+	else game.removeTickEvent("InsectoGolpea") 
 /********************************************* VISUALS *********************************************/
 	game.addVisualCharacter(personaje)
 	game.addVisual(insecto)
@@ -36,7 +43,7 @@ program game {
 	//CON LA LETRA X, EL PERSONAJE PRINCIPAL GOLPEA AL ENEMIGO.
 	keyboard.x().onPressDo ({ personaje.atacaA(game.colliders(personaje).first()) })
 	
-	//CON EL ESPACIO, TODOS LOS PERSONAJES SOBRE EL TABLERO DICEN SUS ATRIBUTOS ACTUALES
+	//CON EL ESPACIO, TODOS LOS PERSONAJES SOBRE EL TABLERO DICEN SUS ATRIBUTOS ACTUALES (si no estan muertos)
 	keyboard.space().onPressDo ({if(personaje.estoyMuerto() == 0) game.say(personaje,  "Vida: " + personaje.vida() + " Daño: " + personaje.danio())})
 	keyboard.space().onPressDo ({if(insecto.estoyMuerto() == 0) game.say(insecto,  "Vida: " + insecto.vida() + " Daño: " + insecto.danio())})
 	keyboard.space().onPressDo ({if(orco.estoyMuerto() == 0) game.say(orco,  "Vida: " + orco.vida() + " Daño: " + orco.danio())})
@@ -46,9 +53,8 @@ program game {
 
 	//EL ENEMIGO GOLPEA Y AGARRA(SEGUN LO QUE SE ECUENTRE) AUTOMATICAMENTE CUANDO CHOCA CON UN OBJETO.
 	//LOS ENEMIGOS SE PUEDEN ATACAR ENTRE ELLOS AL CHOCARSE
-	game.onCollideDo (insecto, { algo => algo.teChoco(insecto) })
-	game.onCollideDo (orco, { algo => algo.teChoco(orco) })
-	
+	game.onCollideDo (insecto, { algo => algo.teChoco(insecto) }) 
+	game.onCollideDo (orco, { algo => algo.teChoco(insecto) })
 	
 /********************************************* START *********************************************/
 	game.start()
