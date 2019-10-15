@@ -73,6 +73,7 @@ class Personaje{
 	method teMataron(){
 		self.estoyMuerto(1)
 		game.removeVisual(self)
+		self.danio(0)
 		//game.end()
 	}
 	
@@ -93,7 +94,7 @@ class Personaje{
 /***************************************************************************************************/
 
 class Principal inherits Personaje{
-	var puedoAtacar = 1 // Esta variable se usa para un schedule en self.atacaA para no poder atacar muchas veces en poco tiempo
+	var puedoAtacar = 1 // Esta variable se usa de flag para un schedule en self.atacaA para no poder atacar muchas veces en poco tiempo
 	
 	//El "teAgarro(self)" es un paso intermedio (no hace absolutamente nada) que sirve para que sea más intuitivo a la hora de leer el codigo
 	//El método es activado al presionar la "a" (ver el .wpgm) y lo que hace es sumar la cosa sobre la que esta parado a su inventario. Si es el enemigo, no hace nada.
@@ -110,7 +111,7 @@ class Principal inherits Personaje{
 		if(puedoAtacar == 1){
 			alguien.teAtaco(self)
 			puedoAtacar = 0
-			game.schedule(350, puedoAtacar = 1)
+			game.schedule(350, {=> puedoAtacar = 1} )
 		}
 	}
 }
@@ -132,14 +133,14 @@ class Enemigo inherits Personaje{
 			} 	else { 	if(self.position().y() > alguien.position().y()){
 						self.move(self.position().down(1))
 						}
-				else { 	if(self.position().x() < alguien.position().x()){
-						self.move(self.position().right(1))	
-						}	
-				else {	if(self.position().y() < alguien.position().y()){
-						self.move(self.position().up(1))	
-						}	
+						else { 	if(self.position().x() < alguien.position().x()){
+								self.move(self.position().right(1))	
+								}	
+								else {	if(self.position().y() < alguien.position().y()){
+										self.move(self.position().up(1))	
+										}	
+								}
+						}		
 				}
-			}		
-		}
 	}
 }

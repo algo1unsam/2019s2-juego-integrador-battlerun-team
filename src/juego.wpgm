@@ -15,17 +15,6 @@ program game {
 	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
 	var orco = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "orco.png")
 	
-	
-	game.onTick(800, "Insecto sigue principal", {=> insecto.perseguiA(personaje)})
-	game.onTick(1100, "Orco sigue principal", {=> orco.perseguiA(personaje)})
-	
-	//Los enemigos están intentando golpear todo el tiempo, cada 500ms
-	//TIRA ERROR CUANDO SE MUEREN, NO PUEDO ENCONTRAR LA FALLA
-	if(orco.estoyMuerto() == 0) game.onTick(500, "OrcoGolpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
-	else game.removeTickEvent("OrcoGolpea") 
-	
-	if(insecto.estoyMuerto() == 0) game.onTick(500, "InsectoGolpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)})
-	else game.removeTickEvent("InsectoGolpea") 
 /********************************************* VISUALS *********************************************/
 	game.addVisualCharacter(personaje)
 	game.addVisual(insecto)
@@ -33,6 +22,26 @@ program game {
 	game.addVisual(new Pocion())
 	game.addVisual(new Armadura())
 	game.addVisual(new Sable())
+	
+/*****CONFIG DE LOS NPC */
+
+	game.onTick(800, "Insecto sigue principal", {=> insecto.perseguiA(personaje)})
+	game.onTick(1100, "Orco sigue principal", {=> orco.perseguiA(personaje)})
+	
+	//Los enemigos están intentando golpear todo el tiempo, cada 500ms
+	//TIRA ERROR CUANDO SE MUEREN, NO PUEDO ENCONTRAR LA FALLA
+	if(game.hasVisual(orco)) { game.onTick(500, "OrcoGolpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)}) }
+	else{
+		game.removeTickEvent("OrcoGolpea")
+		game.removeTickEvent("Orco sigue principal")
+	}
+	
+	if(game.hasVisual(insecto)){ game.onTick(500, "InsectoGolpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) }
+	else{	
+		game.removeTickEvent("InsectoGolpea") 
+		game.removeTickEvent("Insecto sigue principal")
+	}
+
 
 /********************************************* KEYBOARD *********************************************/
 // *actions
