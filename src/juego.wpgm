@@ -16,9 +16,11 @@ program game {
 	var orco = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "orco.png")
 	
 /********************************************* VISUALS *********************************************/
+
 	game.addVisualCharacter(personaje)
 	game.addVisual(insecto)
 	game.addVisual(orco)
+	//objetoInvocador.invoca(orco)
 	game.addVisual(new Pocion())
 	game.addVisual(new Armadura())
 	game.addVisual(new Sable())
@@ -30,17 +32,20 @@ program game {
 	
 	//Los enemigos están intentando golpear todo el tiempo, cada 500ms
 	//TIRA ERROR CUANDO SE MUEREN, NO PUEDO ENCONTRAR LA FALLA
-	if(game.hasVisual(orco)) { game.onTick(500, "OrcoGolpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)}) }
-	else{
-		game.removeTickEvent("OrcoGolpea")
-		game.removeTickEvent("Orco sigue principal")
-	}
+	//if(game.hasVisual(orco)) { 
+		game.onTick(500, orco.identity().toString() + "golpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
+	//}
+	//else{
+		//game.removeTickEvent("OrcoGolpea")
+		//game.removeTickEvent("Orco sigue principal")
+	//}
 	
-	if(game.hasVisual(insecto)){ game.onTick(500, "InsectoGolpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) }
-	else{	
-		game.removeTickEvent("InsectoGolpea") 
-		game.removeTickEvent("Insecto sigue principal")
-	}
+	//if(game.hasVisual(insecto)){ 
+	game.onTick(500, insecto.identity().toString() +"golpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) 
+	//else{	
+		//game.removeTickEvent("InsectoGolpea") 
+		//game.removeTickEvent("Insecto sigue principal")
+	//}
 
 
 /********************************************* KEYBOARD *********************************************/

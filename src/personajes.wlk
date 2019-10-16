@@ -73,6 +73,7 @@ class Personaje{
 	method teMataron(){
 		self.estoyMuerto(1)
 		game.removeVisual(self)
+		game.removeTickEvent( self.identity().toString() + "golpea")
 		self.danio(0)
 		//game.end()
 	}
