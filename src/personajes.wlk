@@ -1,39 +1,5 @@
 import wollok.game.*
 import cosas.*
-/***************************************************************************************************/
-/*  LO HICE MÁS ABAJO COMO UN OBJETO QUE HEREDA DE LA CLASE "PERSONAJES" PARA NO REPETIR CÓDIGO
-
- 	object personaje {
-	var property vida = 0
-	var property armadura = 0
-	var property danio = 0
-	var cosas = #{}
-	
-	var property position = (game.at(0,0))
-	//var property image = "	" //agregar imagen
-	
-	method hayCosa() = game.getObjectsIn(self.position()).size() >= 2
-	
-	method agarra(cosasTiradas){
-		if(not cosasTiradas.isEmpty())
-		cosas.add(cosasTiradas.first())
-		cosasTiradas.first().teAgarro(self)
-	}
-	
-	method agregarArmadura(_armadura){
-		armadura += _armadura
-	}
-	
-	method agregarVida(_vida){
-		vida += _vida
-	}
-	
-	method agregarDanio(_danio){
-		danio += _danio
-	}
-}
-
-*/
 
 
 /***************************************************************************************************/
@@ -73,8 +39,8 @@ class Personaje{
 	method teMataron(){
 		self.estoyMuerto(1)
 		game.removeVisual(self)
-		game.removeTickEvent( self.identity().toString() + "golpea")
-		self.danio(0)
+		game.removeTickEvent( self.identity().toString() + "Golpea")
+		game.removeTickEvent( self.identity().toString() + "Persigue")
 		//game.end()
 	}
 	

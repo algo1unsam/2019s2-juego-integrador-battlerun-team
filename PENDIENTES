@@ -1,0 +1,31 @@
+.-	PANTALLA PRINCIPAL
+
+.- 	NIVELES
+
+.- 	MARCO INTERNO
+
+.- 	CAMBIAR FORMA DE MOVERSE DEL PRINCIPAL
+
+.- 	GENERAR OBJETOS PARA VER SI SE PUEDE MOVER A LA PROXIMA POSICION
+
+.- 	Objeto invocador( genera las visuales, los ontick, toda la config de cada personaje)
+
+
+
+
+
+#################################### ↓↓		IDEAS  	 ↓↓ ####################################
+
+.- 	Cuando te pegan, ¿se reduce la armadura? ("desgaste de la armadura") 
+.- 	Cuando pegás, ¿se reduce tu daño?  ("desgate de la espada")
+.- 	Si tenés escudo, ¿existe la chance de bloquear alguno de los ataques enemigos? 
+
+.- 	Se me ocurre hacer como "celdas" con las puertas y paredes para encerrar enemigos con items dentro. Podrías
+	entrar agarrar el item y correr (abriendo y cerrando la puerta) o plantartele al bicho
+
+.-	Además del punto anterior, hacer que en cada nivel sí o sí tengas que pelear con un bicho para pasar al siguiente, obviamente
+
+.-	Otra idea es que en el anteúltimo nivel pongamos dos puertas (o tres) así hay que elegir donde estará la princesa.
+	en las tres habría que matar un bicho bastante polenta, pero sólo en una estaría la princess. Lo que provoca que si elegis mal,
+	perdes banda de vida y se te complica ganar el juego. (habría que pensar una forma de equilibrar esto, porque quizás si no elegis
+	bien de una se hace imposible ganar)

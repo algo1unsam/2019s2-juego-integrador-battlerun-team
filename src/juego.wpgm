@@ -26,26 +26,14 @@ program game {
 	game.addVisual(new Sable())
 	
 /*****CONFIG DE LOS NPC */
-
-	game.onTick(800, "Insecto sigue principal", {=> insecto.perseguiA(personaje)})
-	game.onTick(1100, "Orco sigue principal", {=> orco.perseguiA(personaje)})
+	//Los enemigos persiguen al principal
+	game.onTick(1100, orco.identity().toString() + "Persigue", {=> orco.perseguiA(personaje)})
+	game.onTick(800, insecto.identity().toString() + "Persigue", {=> insecto.perseguiA(personaje)})
 	
 	//Los enemigos están intentando golpear todo el tiempo, cada 500ms
-	//TIRA ERROR CUANDO SE MUEREN, NO PUEDO ENCONTRAR LA FALLA
-	//if(game.hasVisual(orco)) { 
-		game.onTick(500, orco.identity().toString() + "golpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
-	//}
-	//else{
-		//game.removeTickEvent("OrcoGolpea")
-		//game.removeTickEvent("Orco sigue principal")
-	//}
-	
-	//if(game.hasVisual(insecto)){ 
-	game.onTick(500, insecto.identity().toString() +"golpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) 
-	//else{	
-		//game.removeTickEvent("InsectoGolpea") 
-		//game.removeTickEvent("Insecto sigue principal")
-	//}
+	game.onTick(500, orco.identity().toString() + "Golpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
+	game.onTick(500, insecto.identity().toString() +"Golpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) 
+
 
 
 /********************************************* KEYBOARD *********************************************/
