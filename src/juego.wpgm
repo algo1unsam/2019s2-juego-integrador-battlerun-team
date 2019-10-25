@@ -7,23 +7,29 @@ program game {
 
 /********************************************* CONFIG *********************************************/	
 	game.title("BattleRun")
-	game.height(10)
+	game.height(11)
 	game.width(10) 
 	game.ground("piso.png")
 	
-	var personaje = new Principal(vida = 1000, armadura = 0, danio = 15, position = game.at(0,0), image = "PLAYER.png")
+	var personaje = new Principal(vida = 1000, armadura = 0, danio = 15, position = game.at(0,2), image = "PLAYER.png")
 	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
 	var orco = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "orco.png")
-	
+	var corazon1=new CorazonHud(position = game.at(0,0), vidaQueRepresenta = 1 )
+	var corazon2=new CorazonHud(position = game.at(1,0), vidaQueRepresenta = 500 )
+	var corazon3=new CorazonHud(position = game.at(2,0), vidaQueRepresenta = 1000 )
 /********************************************* VISUALS *********************************************/
 
-	game.addVisualCharacter(personaje)
+	game.addVisual(personaje)
 	game.addVisual(insecto)
 	game.addVisual(orco)
 	//objetoInvocador.invoca(orco)
 	game.addVisual(new Pocion())
 	game.addVisual(new Armadura())
 	game.addVisual(new Sable())
+	game.addVisual(corazon1)
+	game.addVisual(corazon2)
+	game.addVisual(corazon3)
+	
 	
 /*****CONFIG DE LOS NPC */
 	//Los enemigos persiguen al principal
@@ -33,9 +39,10 @@ program game {
 	//Los enemigos están intentando golpear todo el tiempo, cada 500ms
 	game.onTick(500, orco.identity().toString() + "Golpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
 	game.onTick(500, insecto.identity().toString() +"Golpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) 
-
-
-
+	//El hud
+	game.onTick(10,  corazon1.identity().toString() +"vida",{=> corazon1.desaparezco(personaje)})
+    game.onTick(10,  corazon2.identity().toString() +"vida",{=> corazon2.desaparezco(personaje)})
+	game.onTick(10,  corazon3.identity().toString() +"vida",{=> corazon3.desaparezco(personaje)})
 /********************************************* KEYBOARD *********************************************/
 // *actions
 
@@ -44,6 +51,12 @@ program game {
 	
 	//CON LA LETRA X, EL PERSONAJE PRINCIPAL GOLPEA AL ENEMIGO.
 	keyboard.x().onPressDo ({ personaje.atacaA(game.colliders(personaje).first()) })
+	
+	// Movilidad del personaje (necesaria para que el objeto pueda ser "no atravesable")
+	keyboard.up().onPressDo({personaje.move(personaje.position().up(1))})
+	keyboard.down().onPressDo({personaje.move(personaje.position().down(1))})
+	keyboard.left().onPressDo({personaje.move(personaje.position().left(1))})
+	keyboard.right().onPressDo({personaje.move(personaje.position().right(1))})
 	
 	//CON EL ESPACIO, TODOS LOS PERSONAJES SOBRE EL TABLERO DICEN SUS ATRIBUTOS ACTUALES (si no estan muertos)
 	keyboard.space().onPressDo ({if(personaje.estoyMuerto() == 0) game.say(personaje,  "Vida: " + personaje.vida() + " Daño: " + personaje.danio())})

@@ -3,8 +3,8 @@ import personajes.*
 
 
 class Cosa{
-	var property position = (game.at(0.randomUpTo(9), 0.randomUpTo(9)))
-	
+	var property position = (game.at(0.randomUpTo(9), 1.randomUpTo(9)))
+	method esAtravesable()=true
 	//paso intermedio para que sea mas legible. Cuando chocan una cosa, siempre la agarran.
 	method teChoco(alguien){
 		if(alguien.estoyMuerto() == 0) self.teAgarro(alguien)
@@ -120,10 +120,27 @@ class Pocion inherits Cosa{
 
 
 /***************************************************************************************************/
-object obstaculo{
+class Obstaculo{
 	
+	var property position
 	method image() = "pared1.png"
 	//a traves de este metodo es el ue vamos a validar si el objeto "choca" o no.-
 	method esAtravesable() = false
+	
+}
+
+class CorazonHud{
+	var property position
+	var property vidaQueRepresenta
+	method image()= "pocion.png"      //agregar asset
+	method esAtravesable()= false	
+	
+	method desaparezco(personaje){      //problema, una vez que el corazon desaparece el bloque vuelve a ser atavesable
+		if(personaje.vida()<vidaQueRepresenta){
+			game.removeVisual(self)
+			game.removeTickEvent(self.identity().toString() +"vida")
+		}	
+	}
+	
 	
 }

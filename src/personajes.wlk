@@ -11,12 +11,14 @@ class Personaje{
 	var property image 
 	var property estoyMuerto = 0	//Esta var sirve de flag para que no haga ciertas cosas estando muerto
 	
-	
+	method esAtravesable() = true
 	method hayCosa() = game.getObjectsIn(self.position()).size() == 2
 	
 	
 	method move(nuevaPosicion) {
+		if(game.getObjectsIn(nuevaPosicion).all{objeto => objeto.esAtravesable()}){  //No muy optimo, pero bueno no se me ocurrio otra forma
 		self.position(nuevaPosicion)
+		}
 	}	
 	
 		
