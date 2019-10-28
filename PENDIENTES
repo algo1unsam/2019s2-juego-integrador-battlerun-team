@@ -17,15 +17,24 @@
 #################################### ↓↓		IDEAS  	 ↓↓ ####################################
 
 .- 	Cuando te pegan, ¿se reduce la armadura? ("desgaste de la armadura") 
+
+NICO: NO, dejemosla fija!
 .- 	Cuando pegás, ¿se reduce tu daño?  ("desgate de la espada")
+NICO: tampoco, los objetos quedan inmutables... se te rompe la espada y donde "conseguis" otra!?
+
 .- 	Si tenés escudo, ¿existe la chance de bloquear alguno de los ataques enemigos? 
+NICO: el escudo reduce el "daño", sino la formula de daño se complica
+
 
 .- 	Se me ocurre hacer como "celdas" con las puertas y paredes para encerrar enemigos con items dentro. Podrías
 	entrar agarrar el item y correr (abriendo y cerrando la puerta) o plantartele al bicho
+NICO: SI
 
 .-	Además del punto anterior, hacer que en cada nivel sí o sí tengas que pelear con un bicho para pasar al siguiente, obviamente
+NICO: para pasar de nivel necesita una "llave", y si se diseña el nivel bien, si o si tendrias que pelear con "al menos" un bicho
 
 .-	Otra idea es que en el anteúltimo nivel pongamos dos puertas (o tres) así hay que elegir donde estará la princesa.
 	en las tres habría que matar un bicho bastante polenta, pero sólo en una estaría la princess. Lo que provoca que si elegis mal,
 	perdes banda de vida y se te complica ganar el juego. (habría que pensar una forma de equilibrar esto, porque quizás si no elegis
 	bien de una se hace imposible ganar)
+NICO: me gusta, pero antes de eso quiero terminarlo con la "princesa" sola y despues si queda tiempo, lo "complicamos"

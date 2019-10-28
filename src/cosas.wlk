@@ -122,9 +122,11 @@ class Pocion inherits Cosa{
 /***************************************************************************************************/
 class Obstaculo{
 	
-	var property position
-	method image() = "pared1.png"
+	var property position = game.origin()
+	var property image
+	
 	//a traves de este metodo es el ue vamos a validar si el objeto "choca" o no.-
+	
 	method esAtravesable() = false
 	
 }

@@ -1,14 +1,15 @@
 import wollok.game.*
 import personajes.*
 import cosas.*
+import gm.*
 
 
 program game {
 
 /********************************************* CONFIG *********************************************/	
 	game.title("BattleRun")
-	game.height(11)
-	game.width(10) 
+	game.height(12)
+	game.width(28) 
 	game.ground("piso.png")
 	
 	var personaje = new Principal(vida = 1000, armadura = 0, danio = 15, position = game.at(0,2), image = "PLAYER.png")
@@ -31,6 +32,11 @@ program game {
 	game.addVisual(corazon3)
 	
 	
+	new Marco(
+				verticeInicial= new Position(x=0,y=0),
+				verticeFinal = new Position(x=22, y=8),
+				image = "pared1.png").dibujar()	        
+			
 /*****CONFIG DE LOS NPC */
 	//Los enemigos persiguen al principal
 	game.onTick(1100, orco.identity().toString() + "Persigue", {=> orco.perseguiA(personaje)})
