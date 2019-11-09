@@ -3,7 +3,7 @@ import personajes.*
 
 
 class Cosa{
-	var property position = (game.at(0.randomUpTo(9), 1.randomUpTo(9)))
+	var property position = (game.at(2.randomUpTo(21), 2.randomUpTo(10)))
 	method esAtravesable()=true
 	//paso intermedio para que sea mas legible. Cuando chocan una cosa, siempre la agarran.
 	method teChoco(alguien){
@@ -18,6 +18,8 @@ class Cosa{
 	method teAgarro(alguien){
 		game.removeVisual(self)
 	}
+	
+	method teAbrio(alguien){}
 }
 
 
@@ -131,11 +133,29 @@ class Obstaculo{
 	
 }
 
+
+/***************************************************************************************************/
+class Puerta inherits Cosa{
+	var posicion
+	var property estoyAbierta = false
+	var property image = "puerta.png"
+	
+	override method position() = posicion
+	override method teAgarro(alguien){}
+	
+	override method teAbrio(personaje){
+		self.estoyAbierta(true)
+	}
+	
+}
+
+
+/***************************************************************************************************/
 class CorazonHud{
 	var property position
 	var property vidaQueRepresenta
-	method image()= "pocion.png"      //agregar asset
-	method esAtravesable()= false	
+	var property image = "peach.png"      //agregar asset
+	var property esAtravesable = false	
 	
 	method desaparezco(personaje){      //problema, una vez que el corazon desaparece el bloque vuelve a ser atavesable
 		if(personaje.vida()<vidaQueRepresenta){
@@ -144,5 +164,36 @@ class CorazonHud{
 		}	
 	}
 	
+	
+}
+
+
+/***************************************************************************************************/
+class Marco {
+	const verticeInicial
+	const verticeFinal
+	const image
+	
+	method dibujar() {
+		self.dibujarLineaVertical(verticeInicial.x(),verticeInicial.y(),verticeFinal.y())
+		self.dibujarLineaVertical(verticeFinal.x(),verticeInicial.y(),verticeFinal.y())
+		self.dibujarLineaHorizontal(verticeInicial.y(),verticeInicial.x()+1,verticeFinal.x()-1)
+		self.dibujarLineaHorizontal(verticeFinal.y(),verticeInicial.x()+1,verticeFinal.x()-1)
+
+	}
+	
+	method dibujarElemento(columna,fila) {
+		var elemento = new Obstaculo(
+			image = image, 
+			position = new Position(x=columna,y=fila) )
+		game.addVisual(elemento)
+	}
+	
+	method dibujarLineaVertical(columna,filaDesde,filaHasta){
+		(filaDesde..filaHasta).forEach{fila=>self.dibujarElemento(columna,fila)}
+	}
+	method dibujarLineaHorizontal(fila,columnaDesde,columnaHasta){
+		(columnaDesde..columnaHasta).forEach{columna=>self.dibujarElemento(columna,fila)}
+	}
 	
 }

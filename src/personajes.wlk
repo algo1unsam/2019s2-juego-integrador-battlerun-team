@@ -14,6 +14,8 @@ class Personaje{
 	method esAtravesable() = true
 	method hayCosa() = game.getObjectsIn(self.position()).size() == 2
 	
+	//METODO PARA EL PRINCIPAL
+	method abri(puerta){}
 	
 	method move(nuevaPosicion) {
 		if(game.getObjectsIn(nuevaPosicion).all{objeto => objeto.esAtravesable()}){  //No muy optimo, pero bueno no se me ocurrio otra forma
@@ -51,7 +53,8 @@ class Personaje{
 		if(alguien.estoyMuerto() == 0) self.teAtaco(alguien)
 	}
 	
-	method danioRecibidoPor(alguien) = alguien.danio() - armadura
+		
+	method danioRecibidoPor(alguien) = if((alguien.danio() - armadura) >= 0) alguien.danio() - armadura else 0
 	
 	method teAtaco(alguien){
 		if (self.danioRecibidoPor(alguien) > 0) vida -= self.danioRecibidoPor(alguien)
@@ -71,6 +74,11 @@ class Principal inherits Personaje{
 		if (self.hayCosa()) {
 			unaCosa.teAgarro(self)
 		}	
+	}
+	
+	//Con este metodo abrimos la puerta final
+	override method abri(puerta){
+		puerta.teAbrio(self)
 	}
 	
 	//Acá lo mismo que arriba, está este paso intermedio "teAtaco(self)" para que sea mas legible
