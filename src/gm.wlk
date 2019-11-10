@@ -4,7 +4,7 @@ import personajes.*
 
 
 class Nivel{
-	var marcoGeneral = new Marco(verticeInicial= new Position(x=0,y=0), verticeFinal = new Position(x=22, y=11), image = "pared1.png")
+	const marcoGeneral = new Marco(verticeInicial= new Position(x=0,y=0), verticeFinal = new Position(x=22, y=11), image = "pared1.png")
 	var property marcos = [marcoGeneral]
 	var property enemigos = []
 	var property items = []
@@ -22,7 +22,7 @@ class Nivel{
 	//PREGUNTO PARA VER QUE METODO LLAMAR CUANDO PASA DE NIVEL. SI ES FINAL -> nivel.terminarJuego()
 	method esFinal() = false
 	
-	//AGREGA TODAS LAS VISUALES (MENOS EL PJ PRINCIPAL) AL MAPA
+	//AGREGA TODAS LAS VISUALES (MENOS EL PJ PRINCIPAL) EN EL MAPA
 	method dibujarTodo(){
 		enemigos.forEach({enemigo => game.addVisual(enemigo)})
 		marcos.forEach({marco => marco.dibujar()})
@@ -40,7 +40,7 @@ class Nivel{
 		keyboard.right().onPressDo({ principal.move(principal.position().right(1)) })
 		
 			// CON LA LETRA A, EL PERSONAJE PRINCIPAL AGARRA LOS ITEMS. 
-		keyboard.a().onPressDo({ principal.agarraA(game.colliders(principal).first()) })
+		keyboard.a().onPressDo({ game.colliders(principal).forEach({cosa => cosa.teAgarro(principal) }) })
 	
 			// CON LA LETRA X, EL PERSONAJE PRINCIPAL GOLPEA AL ENEMIGO.
 		keyboard.x().onPressDo({ principal.atacaA(game.colliders(principal).first()) })
@@ -73,6 +73,10 @@ class Nivel{
 		self.setearEventos(principal)
 		self.dibujarTodo()
 		self.nivelNumero(principal)
+	}
+	
+	method terminarJuego(){
+		game.schedule(3000, {=> game.stop()})
 	}
 }
 
@@ -170,9 +174,8 @@ object nivel2 inherits Nivel{
 
 object ganar{
 	
-	method esFinal() = true
-	method setearTodo(asd){}
-	method superado() = false 
+	method esFinal() = true 
+	
 	method terminarJuego(){
 		game.schedule(3000, {=> game.stop()})
 	}

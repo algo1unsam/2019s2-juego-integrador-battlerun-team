@@ -11,7 +11,11 @@ class Personaje{
 	var property image 
 	var property estoyMuerto = 0	//Esta var sirve de flag para que no haga ciertas cosas estando muerto
 	
+	//PARA VER SI ES EL PERSONAJE PRINCIPAL O UN ENEMIGO
+	method soyNPC() = true
+	
 	method esAtravesable() = true
+	
 	method hayCosa() = game.getObjectsIn(self.position()).size() == 2
 	
 	//METODO PARA EL PRINCIPAL
@@ -43,9 +47,10 @@ class Personaje{
 	method teMataron(){
 		self.estoyMuerto(1)
 		game.removeVisual(self)
-		game.removeTickEvent( self.identity().toString() + "Golpea")
-		game.removeTickEvent( self.identity().toString() + "Persigue")
-		//game.end()
+		if(self.soyNPC()){
+			game.removeTickEvent( self.identity().toString() + "Golpea")
+			game.removeTickEvent( self.identity().toString() + "Persigue")
+		}
 	}
 	
 	//Método que se llama en un onCollideDo (ver .wpgm) cuando el ENEMIGO choca con algo. Cuando el "algo" es el principal, el enemigo lo ataca.
@@ -68,20 +73,14 @@ class Personaje{
 class Principal inherits Personaje{
 	var puedoAtacar = 1 // Esta variable se usa de flag para un schedule en self.atacaA para no poder atacar muchas veces en poco tiempo
 	
-	//El "teAgarro(self)" es un paso intermedio (no hace absolutamente nada) que sirve para que sea más intuitivo a la hora de leer el codigo
-	//El método es activado al presionar la "a" (ver el .wpgm) y lo que hace es sumar la cosa sobre la que esta parado a su inventario. Si es el enemigo, no hace nada.
-	method agarraA(unaCosa){
-		if (self.hayCosa()) {
-			unaCosa.teAgarro(self)
-		}	
-	}
+	override method soyNPC() = false
 	
 	//Con este metodo abrimos la puerta final
 	override method abri(puerta){
 		puerta.teAbrio(self)
 	}
 	
-	//Acá lo mismo que arriba, está este paso intermedio "teAtaco(self)" para que sea mas legible
+	//Paso intermedio hacia ".teAtaco(self)" para que sea mas legible y se agregan unas condiciones de ataque
 	//Con la tecla "x" (ver .wpgm) el personaje ataca al enemigo (tienen que estar en la misma posicion) si hay cualquier otra cosa que no sea el enemigo no hace nada
 	//Solo se puede atacar una vez cada 350ms, para que sea más parejo 
 	method atacaA(alguien){

@@ -10,19 +10,31 @@ program game {
 	game.width(28)
 	var nivelActual = nivel1
 	
-	var personaje = new Principal(vida = 1000, armadura = 0, danio = 15, position = game.at(2,2), image = "PLAYER.png")
+	var principal = new Principal(vida = 10, armadura = 0, danio = 15, position = game.at(2,2), image = "PLAYER.png")
 	
 	const juego = {nivel =>
 		if(nivel.esFinal()){
-				game.addVisual(personaje)
-				game.say(personaje, "FIN DEL JUEGO: GANASTE!")
+				game.removeTickEvent("pasar de nivel")
+				game.removeTickEvent("perder juego")
+				game.addVisual(principal)
+				game.say(principal, "FIN DEL JUEGO: GANASTE!")
 				nivel.terminarJuego()
 				}
 				
-		nivel.setearTodo(personaje)
+		nivel.setearTodo(principal)
+		
+		game.onTick(1000, "perder juego", { => 
+			if(principal.estoyMuerto() == 1){
+				game.removeTickEvent("pasar de nivel")
+				game.removeTickEvent("perder juego")
+				game.say(nivel.enemigos().anyOne(), "TE MATAMOS, PERDISTE!")
+				nivel.terminarJuego()
+			}
+		})
+		
 		game.onTick(1000, "pasar de nivel", {=>
 			if(nivel.superado()){
-					game.say(personaje, "NIVEL SUPERADO")
+					game.say(principal, "NIVEL SUPERADO")
 					nivelActual = nivel.siguienteNivel()
 					game.clear()
 					juego.apply(nivelActual)
