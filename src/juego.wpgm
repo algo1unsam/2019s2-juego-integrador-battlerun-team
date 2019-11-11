@@ -9,9 +9,9 @@ program game {
 	game.height(18)
 	game.width(26)
 	
-	var nivelActual = nivel1
+	var nivelActual = nivel0
 	
-	var principal = new Principal(vida = 10, armadura = 0, danio = 15, position = game.at(2,2), image = "PLAYER.png")
+	var principal = new Principal(vida = 10, armadura = 0, danio = 15, position = game.at(4,4), image = "PLAYER.png")
 	
 	const juego = {nivel =>
 		if(nivel.esFinal()){

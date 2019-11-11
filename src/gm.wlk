@@ -31,8 +31,8 @@ class Nivel{
 	
 	//TODA LA CONFIG QUE TIENE QUE VER CON EL PERSONAJE PRINCIPAL + addVisual()
 	method setearPrincipal(principal){
+		game.addVisual(fondoDelJuego)// al parecer el fondo del juego tiene que agregarse antes del personaje principal sino se superpone
 		game.addVisual(principal)
-		game.addVisual(fondoDelJuego)
 			// Movilidad del personaje (necesaria para que el objeto pueda ser "no atravesable")
 		keyboard.up().onPressDo({ principal.move(principal.position().up(1)) })
 		keyboard.down().onPressDo({ principal.move(principal.position().down(1)) })
@@ -82,7 +82,39 @@ class Nivel{
 
 
 /****************************************************************************************************************************************/
-
+object nivel0 inherits Nivel{
+	var property puerta = new Puerta(posicion = game.at(13,9))
+	
+	override method piso() = "piso.png"
+	
+	override method setearPrincipal(principal){
+		super(principal)
+		game.removeVisual(fondoDelJuego)
+	}
+	
+	override method nivelNumero(principal){
+		
+	}
+	
+	override method agregarEnemigos(){
+	}
+	
+	override method agregarMarcos(){
+		marcos.remove(marcoGeneral)
+	}
+	
+	override method agregarItems(){
+		items.add(puerta)
+	}
+	
+	
+	override method setearEventos(principal){ 
+	}
+	
+	override method superado() = self.puerta().estoyAbierta()
+	
+	override method siguienteNivel() = nivel1
+}
 object nivel1 inherits Nivel{
 	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
 	var orco = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "orco.png") 
@@ -193,10 +225,10 @@ class Visual {
 
 object fondoDelJuego inherits Visual( image = "fondo.PNG",position = new Position(x=0,y=0) ){	}
 
-const inicioDelJuego = new Visual( image =  "Presentacion.png", position = game.at(1,1) )
+//const inicioDelJuego = new Visual( image =  "Presentacion.png", position = game.at(1,1) 
 
-const winVisual = new Visual( image = "winwin.png", position = game.origin())
+//const winVisual = new Visual( image = "winwin.png", position = game.origin())
 
-const gameOver = new Visual( image = "sadBob.gif", position = game.at(1,1) )
+//const gameOver = new Visual( image = "sadBob.gif", position = game.at(1,1) )
 
 
