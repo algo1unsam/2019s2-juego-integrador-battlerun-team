@@ -43,7 +43,6 @@ class Personaje{
 	}
 	
 	
-	//Hay que definir qué más pasa cuando se muere cada uno. (puede morir el principal o el enemigo) 
 	method teMataron(){
 		self.estoyMuerto(1)
 		game.removeVisual(self)

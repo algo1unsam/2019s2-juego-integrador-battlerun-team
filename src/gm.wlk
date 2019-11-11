@@ -15,7 +15,6 @@ class Nivel{
 	method agregarMarcos()
 	method agregarItems()
 	method setearEventos(principal)
-	method piso()
 	method superado()
 	method nivelNumero(personaje)
 	
@@ -31,7 +30,8 @@ class Nivel{
 	
 	//TODA LA CONFIG QUE TIENE QUE VER CON EL PERSONAJE PRINCIPAL + addVisual()
 	method setearPrincipal(principal){
-		game.addVisual(fondoDelJuego)// al parecer el fondo del juego tiene que agregarse antes del personaje principal sino se superpone
+		
+		game.addVisual(fondoDelJuego) 
 		game.addVisual(principal)
 			// Movilidad del personaje (necesaria para que el objeto pueda ser "no atravesable")
 		keyboard.up().onPressDo({ principal.move(principal.position().up(1)) })
@@ -39,7 +39,6 @@ class Nivel{
 		keyboard.left().onPressDo({ principal.move(principal.position().left(1)) })
 		keyboard.right().onPressDo({ principal.move(principal.position().right(1)) })
 		
-			// CON LA LETRA A, EL PERSONAJE PRINCIPAL AGARRA LOS ITEMS. 
 		keyboard.a().onPressDo({ game.colliders(principal).forEach({cosa => cosa.teAgarro(principal) }) })
 	
 			// CON LA LETRA X, EL PERSONAJE PRINCIPAL GOLPEA AL ENEMIGO.
@@ -56,10 +55,8 @@ class Nivel{
 		keyboard.space().onPressDo({ personajes.forEach({ personaje => if (personaje.estoyMuerto() == 0) game.say(personaje, "Vida: " + personaje.vida() + " Daño: " + personaje.danio()) }) })
 	}
 	
-	//PARA EL CAMBIO DE FONDO (NO ANDA)
-	method setearPiso(){
-		game.ground("Celda.png")
-	}
+
+	
 		
 	//METODO QUE SE LLAMA EN EL .wpgm PARA QUE SE CONFIGURE TODO
 	method setearTodo(principal){
@@ -84,8 +81,6 @@ class Nivel{
 /****************************************************************************************************************************************/
 object nivel0 inherits Nivel{
 	var property puerta = new Puerta(posicion = game.at(13,9))
-	
-	override method piso() = "piso.png"
 	
 	override method setearPrincipal(principal){
 		super(principal)
@@ -120,7 +115,8 @@ object nivel0 inherits Nivel{
 
 object nivel1 inherits Nivel{
 	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
-	var zombie = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "zombie.png") 
+	var zombie = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "zombie.png")
+	var coordenadas 
 	var property puerta = new Puerta(posicion = game.at(4,2))
 	
 	override method piso() = "piso.png"
@@ -135,7 +131,9 @@ object nivel1 inherits Nivel{
 	}
 	
 	override method agregarMarcos(){
-		//POR SI QUEREMOS HACER CELDAS
+		
+		
+		
 	}
 	
 	override method agregarItems(){
@@ -225,6 +223,11 @@ class Visual {
 	var property position = game.origin()
 }
 
+class pared1 inherits Visual{override method image = "pared1.png" }
+class pared2 inherits Visual{override method image = "pared2.png" }
+class pared3 inherits Visual{ override method image = "pared3.png"}
+class paredCoins inherits Visual{ override method image = "pared_coins.png"}
+class paredLava inherits Visual{ override method image = "pared_lava.png"}
 
 object fondoDelJuego inherits Visual( image = "fondo.PNG",position = new Position(x=0,y=0) ){	}
 
