@@ -6,8 +6,9 @@ import gm.*
 program game {
 	/********************************************* CONFIG *********************************************/
 	game.title("BattleRun")
-	game.height(12)
-	game.width(28)
+	game.height(18)
+	game.width(26)
+	
 	var nivelActual = nivel1
 	
 	var principal = new Principal(vida = 10, armadura = 0, danio = 15, position = game.at(2,2), image = "PLAYER.png")
@@ -17,7 +18,6 @@ program game {
 				game.removeTickEvent("pasar de nivel")
 				game.removeTickEvent("perder juego")
 				game.addVisual(principal)
-				game.say(principal, "FIN DEL JUEGO: GANASTE!")
 				nivel.terminarJuego()
 				}
 				
