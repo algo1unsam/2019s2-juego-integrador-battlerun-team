@@ -115,9 +115,12 @@ object nivel0 inherits Nivel{
 	
 	override method siguienteNivel() = nivel1
 }
+
+
+
 object nivel1 inherits Nivel{
 	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
-	var orco = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "orco.png") 
+	var zombie = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "zombie.png") 
 	var property puerta = new Puerta(posicion = game.at(4,2))
 	
 	override method piso() = "piso.png"
@@ -128,7 +131,7 @@ object nivel1 inherits Nivel{
 	
 	override method agregarEnemigos(){
 		enemigos.add(insecto)
-		enemigos.add(orco)
+		enemigos.add(zombie)
 	}
 	
 	override method agregarMarcos(){
@@ -144,10 +147,10 @@ object nivel1 inherits Nivel{
 	
 	
 	override method setearEventos(principal){
-	game.onTick(1100, orco.identity().toString() + "Persigue", {=> orco.perseguiA(principal)})
+	game.onTick(1100, zombie.identity().toString() + "Persigue", {=> zombie.perseguiA(principal)})
 	game.onTick(800, insecto.identity().toString() + "Persigue", {=> insecto.perseguiA(principal)})
 	
-	game.onTick(500, orco.identity().toString() + "Golpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
+	game.onTick(500, zombie.identity().toString() + "Golpea", {=> if(game.colliders(zombie).size() > 0) game.colliders(orco).first().teChoco(orco)})
 	game.onTick(500, insecto.identity().toString() +"Golpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) 
 	}
 	

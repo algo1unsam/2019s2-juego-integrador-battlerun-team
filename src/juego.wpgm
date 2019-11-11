@@ -9,7 +9,7 @@ program game {
 	game.height(18)
 	game.width(26)
 	
-	var nivelActual = nivel0
+	var nivelActual = nivel1
 	
 	var principal = new Principal(vida = 10, armadura = 0, danio = 15, position = game.at(4,4), image = "PLAYER.png")
 	
