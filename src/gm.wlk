@@ -17,7 +17,7 @@ class Nivel{
 	method setearEventos(principal)
 	method superado()
 	method nivelNumero(personaje)
-	method setearPiso()
+	method setearPiso() 
 	
 	//PREGUNTO PARA VER QUE METODO LLAMAR CUANDO PASA DE NIVEL. SI ES FINAL -> nivel.terminarJuego()
 	method esFinal() = false
@@ -83,7 +83,7 @@ class Nivel{
 object nivel0 inherits Nivel{
 	var property pasarDeNivel = false
 	
-	override method setearPiso(){
+	override method setearPiso(){ 
 		
 	}
 	
