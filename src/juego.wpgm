@@ -10,15 +10,17 @@ program game {
 	game.height(18)
 	game.width(26)
 	
-	var nivelActual = nivel0
+	var nivelActual = nivel3
 	
 	var principal = new Principal(vida = 500, armadura = 0, danio = 15, position = game.at(1,1), image = "PLAYER.png")
 	
 	const juego = {nivel =>
 		if(nivel.esFinal()){
-				game.removeTickEvent("pasar de nivel")
-				game.removeTickEvent("perder juego")
+				//game.removeTickEvent("pasar de nivel")
+				//game.removeTickEvent("perder juego")
+				game.addVisualIn("ganar.png", game.origin())
 				game.addVisual(principal)
+				game.say(principal, "Sos crack!")
 				nivel.terminarJuego()
 				}
 				

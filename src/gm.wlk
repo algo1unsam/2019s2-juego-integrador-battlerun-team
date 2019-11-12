@@ -31,6 +31,7 @@ class Nivel{
 	//TODA LA CONFIG QUE TIENE QUE VER CON EL PERSONAJE PRINCIPAL + addVisual()
 	method setearPrincipal(principal){
 		
+		principal.position(game.at(1,1))
 		game.addVisual(fondoDelJuego) 
 		game.addVisual(principal)
 			// Movilidad del personaje (necesaria para que el objeto pueda ser "no atravesable")
@@ -52,7 +53,7 @@ class Nivel{
 	
 	//PARA QUE LOS PERSONAJES DIGAN SUS ATRIBUTOS
 	method setearBarra(){
-		keyboard.space().onPressDo({ personajes.forEach({ personaje => if (personaje.estoyMuerto() == 0) game.say(personaje, "Vida: " + personaje.vida() + " Daño: " + personaje.danio()) }) })
+		keyboard.space().onPressDo({ personajes.forEach({ x => if (x.estoyMuerto() == 0) game.say(x, "Vida: " + x.vida() + " Daño: " + x.danio()) }) })
 	}
 	
 
