@@ -17,7 +17,6 @@ class Nivel{
 	method setearEventos(principal)
 	method superado()
 	method nivelNumero(personaje)
-	method setearPiso() 
 	
 	//PREGUNTO PARA VER QUE METODO LLAMAR CUANDO PASA DE NIVEL. SI ES FINAL -> nivel.terminarJuego()
 	method esFinal() = false
@@ -64,7 +63,6 @@ class Nivel{
 		personajes.add(principal)
 		self.setearPrincipal(principal)
 		self.setearBarra()
-		self.setearPiso()
 		self.agregarEnemigos()
 		self.agregarMarcos()
 		self.agregarItems()
@@ -83,9 +81,6 @@ class Nivel{
 object nivel0 inherits Nivel{
 	var property pasarDeNivel = false
 	
-	override method setearPiso(){ 
-		
-	}
 	
 	override method setearPrincipal(principal){
 		game.addVisual(principal)
@@ -116,17 +111,15 @@ object nivel0 inherits Nivel{
 }
 
 
+/****************************************************************************************************************************************/
 
 object nivel1 inherits Nivel{
-	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "insecto.png")
-	var zombie = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "zombie.png")
-	var coordenadas 
-	var property puerta = new Puerta(posicion = game.at(4,2))
-	var piso = "Celda.png"
+	var insecto = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(3,10), image = "insecto.png")
+	var insecto2 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(10,7), image = "insecto.png")
+	var rata = new Enemigo(vida = 15, armadura = 0, danio = 15, position = game.at(6,5), image = "rata.png")
+	var zombie = new Enemigo(vida = 150, armadura = 10, danio = 20, position = game.at(15,7), image = "zombie.png")
+	var property puerta = new Puerta( position = game.at(19,16))
 	
-	override method setearPiso() {
-		
-	}
 	
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 1")
@@ -135,26 +128,84 @@ object nivel1 inherits Nivel{
 	override method agregarEnemigos(){
 		enemigos.add(insecto)
 		enemigos.add(zombie)
+		enemigos.add(insecto2)
+		enemigos.add(rata)
 	}
 	
 	override method agregarMarcos(){
+		
+		game.addVisualIn(new Pared1(), game.at(4, 1))
+		game.addVisualIn(new Pared1(), game.at(4, 2))
+		game.addVisualIn(new Pared1(), game.at(4, 3))
+		game.addVisualIn(new Pared1(), game.at(4, 4))
+		game.addVisualIn(new Pared1(), game.at(4, 5))
+		game.addVisualIn(new Pared1(), game.at(4, 6))
+		game.addVisualIn(new Pared1(), game.at(4, 7))
+		game.addVisualIn(new Pared1(), game.at(4, 8))
+		game.addVisualIn(new Pared1(), game.at(4, 9))
+		game.addVisualIn(new Pared1(), game.at(4, 10))
+		game.addVisualIn(new Pared1(), game.at(4, 11))
+		game.addVisualIn(new Pared1(), game.at(4, 12))
+		game.addVisualIn(new Pared1(), game.at(3, 9))
+		game.addVisualIn(new Pared1(), game.at(2, 9))
+		game.addVisualIn(new Pared1(), game.at(9, 4))
+		game.addVisualIn(new Pared1(), game.at(9, 5))
+		game.addVisualIn(new Pared1(), game.at(9, 6))
+		game.addVisualIn(new Pared1(), game.at(9, 7))
+		game.addVisualIn(new Pared1(), game.at(9, 8))
+		game.addVisualIn(new Pared1(), game.at(9, 9))
+		game.addVisualIn(new Pared1(), game.at(9, 10))
+		game.addVisualIn(new Pared1(), game.at(9, 11))
+		game.addVisualIn(new Pared1(), game.at(9, 12))
+		game.addVisualIn(new Pared1(), game.at(9, 13))
+		game.addVisualIn(new Pared1(), game.at(9, 14))
+		game.addVisualIn(new Pared1(), game.at(9, 15))
+		game.addVisualIn(new Pared1(), game.at(9, 16))
+		game.addVisualIn(new Pared1(), game.at(10, 6))
+		game.addVisualIn(new Pared1(), game.at(12, 1))
+		game.addVisualIn(new Pared1(), game.at(12, 2))
+		game.addVisualIn(new Pared1(), game.at(12, 3))
+		game.addVisualIn(new Pared1(), game.at(12, 4))
+		game.addVisualIn(new Pared1(), game.at(12, 5))
+		game.addVisualIn(new Pared1(), game.at(12, 6))
+		game.addVisualIn(new Pared1(), game.at(12, 7))
+		game.addVisualIn(new Pared1(), game.at(12, 8))
+		game.addVisualIn(new Pared1(), game.at(12, 9))
+		game.addVisualIn(new Pared1(), game.at(14, 3))
+		game.addVisualIn(new Pared1(), game.at(15, 3))
+		game.addVisualIn(new Pared1(), game.at(16, 3))
+		game.addVisualIn(new Pared1(), game.at(17, 3))
+		game.addVisualIn(new Pared1(), game.at(18, 3))
+		game.addVisualIn(new Pared1(), game.at(19, 3))
+		game.addVisualIn(new Pared1(), game.at(15, 16))
+		game.addVisualIn(new Pared1(), game.at(15, 15))
+		game.addVisualIn(new Pared1(), game.at(15, 14))
+		game.addVisualIn(new Pared1(), game.at(15, 16))
+		game.addVisualIn(new Pared1(), game.at(15, 14))
+		game.addVisualIn(new Pared1(), game.at(16, 14))
+		game.addVisualIn(new Pared1(), game.at(17, 14))
+		
 		
 	}
 	
 	
 	override method agregarItems(){
-		items.add(new Pocion())
-		items.add(new Espada())
-		items.add(new Armadura())
+		items.add(new Pocion(position= game.at(13,15)))
+		items.add(new Daga(position= game.at(3,8)))
+		items.add(new Escudo(position= game.at(2,17)))
 		items.add(puerta)
 	}
 	
 	
 	override method setearEventos(principal){
-	game.onTick(1100, zombie.identity().toString() + "Persigue", {=> zombie.perseguiA(principal)})
+	game.onTick(1300, zombie.identity().toString() + "Persigue", {=> zombie.perseguiA(principal)})
+	game.onTick(400, rata.identity().toString() + "Persigue", {=> rata.perseguiA(principal)})
+	game.onTick(800, insecto2.identity().toString() + "Persigue", {=> insecto2.perseguiA(principal)})
 	game.onTick(800, insecto.identity().toString() + "Persigue", {=> insecto.perseguiA(principal)})
 	
-	game.onTick(500, zombie.identity().toString() + "Golpea", {=> if(game.colliders(zombie).size() > 0) game.colliders(zombie).first().teChoco(zombie)})
+	game.onTick(700, zombie.identity().toString() + "Golpea", {=> if(game.colliders(zombie).size() > 0) game.colliders(zombie).first().teChoco(zombie)})
+	game.onTick(300, rata.identity().toString() + "Golpea", {=> if(game.colliders(rata).size() > 0) game.colliders(rata).first().teChoco(rata)})
+	game.onTick(500, insecto2.identity().toString() + "Golpea", {=> if(game.colliders(insecto2).size() > 0) game.colliders(insecto2).first().teChoco(insecto2)})
 	game.onTick(500, insecto.identity().toString() +"Golpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) 
 	}
 	
@@ -169,13 +220,8 @@ object nivel1 inherits Nivel{
 object nivel2 inherits Nivel{
 	var lobo = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "lobo.png")
 	var loboJefe = new Enemigo(vida = 50, armadura = 10, danio = 40, position = game.at(9,3), image = "lobo.png")
-	var property puerta = new Puerta(posicion = game.at(1,1))
-	var piso = "Celda.png"
-	
-	
-	override method setearPiso(){
-		
-	}
+	var property puerta = new Puerta(position = game.at(1,1))
+
 	
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 2")
@@ -187,6 +233,56 @@ object nivel2 inherits Nivel{
 	}
 	
 	override method agregarMarcos(){
+		
+		game.addVisualIn(new ParedLava(), game.at(3, 3))
+		game.addVisualIn(new ParedLava(), game.at(5, 3))
+		game.addVisualIn(new ParedLava(), game.at(7, 3))
+		game.addVisualIn(new ParedLava(), game.at(9, 3))
+		game.addVisualIn(new ParedLava(), game.at(11, 3))
+		game.addVisualIn(new ParedLava(), game.at(13, 3))
+		game.addVisualIn(new ParedLava(), game.at(15, 3))
+		game.addVisualIn(new ParedLava(), game.at(17, 3))
+		game.addVisualIn(new ParedLava(), game.at(3, 5))
+		game.addVisualIn(new ParedLava(), game.at(5, 5))
+		game.addVisualIn(new ParedLava(), game.at(7, 5))
+		game.addVisualIn(new ParedLava(), game.at(9, 5))
+		game.addVisualIn(new ParedLava(), game.at(11, 5))
+		game.addVisualIn(new ParedLava(), game.at(13, 5))
+		game.addVisualIn(new ParedLava(), game.at(15, 5))
+		game.addVisualIn(new ParedLava(), game.at(3, 7))
+		game.addVisualIn(new ParedLava(), game.at(5, 7))
+		game.addVisualIn(new ParedLava(), game.at(3, 9))
+		game.addVisualIn(new ParedLava(), game.at(5, 9))
+		game.addVisualIn(new ParedLava(), game.at(7, 9))
+		game.addVisualIn(new ParedLava(), game.at(9, 9))
+		game.addVisualIn(new ParedLava(), game.at(11, 9))
+		game.addVisualIn(new ParedLava(), game.at(13, 9))
+		game.addVisualIn(new ParedLava(), game.at(15, 9))
+		game.addVisualIn(new Pared2(), game.at(1, 14))
+		game.addVisualIn(new Pared2(), game.at(2, 14))
+		game.addVisualIn(new Pared2(), game.at(3, 14))
+		game.addVisualIn(new Pared2(), game.at(4, 14))
+		game.addVisualIn(new Pared2(), game.at(5, 14))
+		game.addVisualIn(new Pared2(), game.at(6, 14))
+		game.addVisualIn(new Pared2(), game.at(7, 14))
+		game.addVisualIn(new Pared2(), game.at(8, 14))
+		game.addVisualIn(new Pared2(), game.at(9, 14))
+		game.addVisualIn(new Pared2(), game.at(10, 14))
+		game.addVisualIn(new Pared2(), game.at(10, 13))
+		game.addVisualIn(new Pared2(), game.at(10, 12))
+		game.addVisualIn(new Pared2(), game.at(10, 11))
+		game.addVisualIn(new Pared2(), game.at(19, 5))
+		game.addVisualIn(new Pared2(), game.at(18, 5))
+		game.addVisualIn(new Pared2(), game.at(17, 5))
+		game.addVisualIn(new Pared2(), game.at(17, 6))
+		game.addVisualIn(new Pared2(), game.at(17, 7))
+		game.addVisualIn(new Pared2(), game.at(17, 8))
+		game.addVisualIn(new Pared2(), game.at(17, 9))
+		game.addVisualIn(new Pared2(), game.at(17, 10))
+		game.addVisualIn(new Pared2(), game.at(17, 11))
+		game.addVisualIn(new Pared2(), game.at(17, 12))
+		game.addVisualIn(new Pared2(), game.at(18, 9))
+		
 	}
 	
 	override method agregarItems(){
@@ -232,12 +328,14 @@ class Visual {
 	var property image
 	var property position = game.origin()
 }
-
-class Pared1 inherits Visual{override method image() = "pared1.png" }
-class Pared2 inherits Visual{override method image() = "pared2.png" }
-class Pared3 inherits Visual{ override method image() = "pared3.png"}
-class ParedCoins inherits Visual{ override method image() = "pared_coins.png"}
-class ParedLava inherits Visual{ override method image() = "pared_lava.png"}
+class Paredes inherits Visual{
+	var property esAtravesable = false	
+}
+class Pared1 inherits Paredes{	override method image() = "pared_1.png"}
+class Pared2 inherits Paredes{	override method image() = "pared_2.png"}
+class Pared3 inherits Paredes{ override method image() = "pared_3.png"}
+class ParedCoins inherits Paredes{ override method image() = "pared_coins.png"}
+class ParedLava inherits Paredes{ override method image() = "pared_lava.png"}
 
 object fondoDelJuego inherits Visual( image = "fondo.PNG",position = new Position(x=0,y=0) ){	}
 object fondoPantallaInicio inherits Visual( image = "PantallaPrincipal.png" , position = new Position(x=0,y=0)){}

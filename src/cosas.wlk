@@ -3,7 +3,7 @@ import personajes.*
 
 
 class Cosa{
-	var property position = (game.at(2.randomUpTo(21), 2.randomUpTo(10)))
+	var property position 
 	method esAtravesable()=true
 	//paso intermedio para que sea mas legible. Cuando chocan una cosa, siempre la agarran.
 	method teChoco(alguien){
@@ -50,7 +50,7 @@ class Casco inherits Cosa{
 /***************************************************************************************************/
 class Escudo inherits Cosa{
 	var property armadura = 15
-	var property image = "escudo.png"
+	var property image = "escudo_madera.png"
 	
 	override method teAgarro(alguien){
 		alguien.agregarArmadura(armadura)
@@ -111,7 +111,7 @@ class Sable inherits Cosa{
 
 /***************************************************************************************************/
 class Pocion inherits Cosa{
-	var property vida = 50
+	var property vida = 250
 	var property image = "pota.png"
 	
 	override method teAgarro(alguien){
@@ -136,11 +136,10 @@ class Obstaculo{
 
 /***************************************************************************************************/
 class Puerta inherits Cosa{
-	var posicion
+
 	var property estoyAbierta = false
 	var property image = "puerta.png"
 	
-	override method position() = posicion
 	override method teAgarro(alguien){}
 	
 	override method teAbrio(personaje){
