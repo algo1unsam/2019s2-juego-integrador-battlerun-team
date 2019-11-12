@@ -17,6 +17,7 @@ class Nivel{
 	method setearEventos(principal)
 	method superado()
 	method nivelNumero(personaje)
+	method setearPiso()
 	
 	//PREGUNTO PARA VER QUE METODO LLAMAR CUANDO PASA DE NIVEL. SI ES FINAL -> nivel.terminarJuego()
 	method esFinal() = false
@@ -80,15 +81,19 @@ class Nivel{
 
 /****************************************************************************************************************************************/
 object nivel0 inherits Nivel{
-	var property puerta = new Puerta(posicion = game.at(13,9))
+	var property pasarDeNivel = false
 	
-	override method setearPrincipal(principal){
-		super(principal)
-		game.removeVisual(fondoDelJuego)
+	override method setearPiso(){
+		
 	}
 	
-	override method nivelNumero(principal){
-		
+	override method setearPrincipal(principal){
+		game.addVisual(principal)
+		game.addVisual(fondoPantallaInicio)
+		keyboard.enter().onPressDo{self.pasarDeNivel(true)}
+	}
+	
+	override method nivelNumero(principal){	
 	}
 	
 	override method agregarEnemigos(){
@@ -99,14 +104,13 @@ object nivel0 inherits Nivel{
 	}
 	
 	override method agregarItems(){
-		items.add(puerta)
 	}
 	
 	
 	override method setearEventos(principal){ 
 	}
 	
-	override method superado() = self.puerta().estoyAbierta()
+	override method superado() = pasarDeNivel
 	
 	override method siguienteNivel() = nivel1
 }
@@ -118,8 +122,11 @@ object nivel1 inherits Nivel{
 	var zombie = new Enemigo(vida = 150, armadura = 10, danio = 50, position = game.at(9,9), image = "zombie.png")
 	var coordenadas 
 	var property puerta = new Puerta(posicion = game.at(4,2))
+	var piso = "Celda.png"
 	
-	override method piso() = "piso.png"
+	override method setearPiso() {
+		
+	}
 	
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 1")
@@ -132,9 +139,8 @@ object nivel1 inherits Nivel{
 	
 	override method agregarMarcos(){
 		
-		
-		
 	}
+	
 	
 	override method agregarItems(){
 		items.add(new Pocion())
@@ -148,7 +154,7 @@ object nivel1 inherits Nivel{
 	game.onTick(1100, zombie.identity().toString() + "Persigue", {=> zombie.perseguiA(principal)})
 	game.onTick(800, insecto.identity().toString() + "Persigue", {=> insecto.perseguiA(principal)})
 	
-	game.onTick(500, zombie.identity().toString() + "Golpea", {=> if(game.colliders(zombie).size() > 0) game.colliders(orco).first().teChoco(orco)})
+	game.onTick(500, zombie.identity().toString() + "Golpea", {=> if(game.colliders(zombie).size() > 0) game.colliders(zombie).first().teChoco(zombie)})
 	game.onTick(500, insecto.identity().toString() +"Golpea", {=> if(game.colliders(insecto).size() > 0) game.colliders(insecto).first().teChoco(insecto)}) 
 	}
 	
@@ -164,8 +170,12 @@ object nivel2 inherits Nivel{
 	var lobo = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "lobo.png")
 	var loboJefe = new Enemigo(vida = 50, armadura = 10, danio = 40, position = game.at(9,3), image = "lobo.png")
 	var property puerta = new Puerta(posicion = game.at(1,1))
+	var piso = "Celda.png"
 	
-	override method piso() = "Celda.png"
+	
+	override method setearPiso(){
+		
+	}
 	
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 2")
@@ -223,14 +233,14 @@ class Visual {
 	var property position = game.origin()
 }
 
-class pared1 inherits Visual{override method image = "pared1.png" }
-class pared2 inherits Visual{override method image = "pared2.png" }
-class pared3 inherits Visual{ override method image = "pared3.png"}
-class paredCoins inherits Visual{ override method image = "pared_coins.png"}
-class paredLava inherits Visual{ override method image = "pared_lava.png"}
+class Pared1 inherits Visual{override method image() = "pared1.png" }
+class Pared2 inherits Visual{override method image() = "pared2.png" }
+class Pared3 inherits Visual{ override method image() = "pared3.png"}
+class ParedCoins inherits Visual{ override method image() = "pared_coins.png"}
+class ParedLava inherits Visual{ override method image() = "pared_lava.png"}
 
 object fondoDelJuego inherits Visual( image = "fondo.PNG",position = new Position(x=0,y=0) ){	}
-
+object fondoPantallaInicio inherits Visual( image = "PantallaPrincipal.png" , position = new Position(x=0,y=0)){}
 //const inicioDelJuego = new Visual( image =  "Presentacion.png", position = game.at(1,1) 
 
 //const winVisual = new Visual( image = "winwin.png", position = game.origin())

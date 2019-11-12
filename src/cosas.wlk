@@ -112,7 +112,7 @@ class Sable inherits Cosa{
 /***************************************************************************************************/
 class Pocion inherits Cosa{
 	var property vida = 50
-	var property image = "pocion.png"
+	var property image = "pota.png"
 	
 	override method teAgarro(alguien){
 		alguien.agregarVida(vida)
