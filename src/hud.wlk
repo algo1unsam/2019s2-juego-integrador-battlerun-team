@@ -98,8 +98,20 @@ object espada{
 }
 
 object _inventario{
+	
+	method hayCosaDeEsteTipoEnElInventario(principal){
+		return game.colliders(principal.inventario().last()).size() == 1
+	}
+	
+	method queCosaEs(principal){
+		return game.colliders(principal.inventario().last()).first()
+	}
+	
 	method agregoInventario(principal){ // se usa al agarrar 
 		game.addVisual(principal.inventario().last()) 
+		if(self.hayCosaDeEsteTipoEnElInventario(principal)){
+			game.removeVisual(self.queCosaEs(principal))
+			}
 	}
 	
 	method dibujoVarios(principal){ 	// se usa al pasar de nivel para dibujar todo de 0
