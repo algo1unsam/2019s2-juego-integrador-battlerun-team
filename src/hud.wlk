@@ -38,17 +38,17 @@ object corazon{
 
 
 object armor{
-	var estadistica = [30,60]
+	var estadistica = 30
 	var posX = 24
 	var posY = 8 
-	var index = 0
-	
+	var index=0
 	method agregoArmadura(principal){  // se usa al agarrar
-		if(principal.armadura() > estadistica.get(index)  && index < 2){
+		if(principal.armadura() > estadistica  && posX < 26){
 		var armadura = new Armadura(position=game.at(posX,posY))
 		game.addVisual(armadura)
 		posX = posX+1
 		index = index+1
+		estadistica = estadistica * 2
 		}
 		
 	}
@@ -68,17 +68,18 @@ object armor{
 
 object espada{
 	
-	var estadistica = [20,60]
+	var estadistica = 20
 	var posX = 24
 	var posY = 9 
 	var index = 0
 	
 	method agregoEspada(principal){  // se usa al agarrar 
-		if(principal.danio() > estadistica.get(index)){
+		if(principal.danio() > estadistica  && posX<26){
 		var espada = new Espada(position=game.at(posX,posY))
 		game.addVisual(espada)
 		posX = posX+1
 		index = index+1
+		estadistica = estadistica * 2
 		}
 		
 	}
@@ -101,7 +102,7 @@ object _inventario{
 		game.addVisual(principal.inventario().last()) 
 	}
 	
-	method dibujoVarios(principal){
+	method dibujoVarios(principal){ 	// se usa al pasar de nivel para dibujar todo de 0
 		(0..principal.inventario().size()-1).forEach{
 			iteracion => if(principal.inventario().size()>0){
 				game.addVisual(principal.inventario().get(iteracion))
