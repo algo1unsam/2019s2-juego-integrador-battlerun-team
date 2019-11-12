@@ -218,9 +218,13 @@ object nivel1 inherits Nivel{
 /****************************************************************************************************************************************/
 
 object nivel2 inherits Nivel{
-	var lobo = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,9), image = "lobo.png")
-	var loboJefe = new Enemigo(vida = 50, armadura = 10, danio = 40, position = game.at(9,3), image = "lobo.png")
-	var property puerta = new Puerta(position = game.at(1,1))
+	var vampiro = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(4,10), image = "vampiro.png")
+	var vampiro2 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(13,1), image = "vampiro.png")
+	var lobo = new Enemigo(vida = 15, armadura = 0, danio = 15, position = game.at(10,4), image = "lobo.png")
+	var lobo2 = new Enemigo(vida = 150, armadura = 10, danio = 20, position = game.at(3,15), image = "lobo.png")
+	var orco = new Enemigo(vida = 150, armadura = 10, danio = 20, position = game.at(18,9), image = "orco_jefe.png")
+	var property puerta = new Puerta( position = game.at(19,6))
+	
 
 	
 	override method nivelNumero(personaje){
@@ -228,8 +232,11 @@ object nivel2 inherits Nivel{
 	}
 	
 	override method agregarEnemigos(){
+		enemigos.add(vampiro)
+		enemigos.add(vampiro2)
 		enemigos.add(lobo)
-		enemigos.add(loboJefe)
+		enemigos.add(lobo2)
+		enemigos.add(orco)
 	}
 	
 	override method agregarMarcos(){
@@ -271,6 +278,16 @@ object nivel2 inherits Nivel{
 		game.addVisualIn(new Pared2(), game.at(10, 13))
 		game.addVisualIn(new Pared2(), game.at(10, 12))
 		game.addVisualIn(new Pared2(), game.at(10, 11))
+		game.addVisualIn(new Pared2(), game.at(16, 7))
+		game.addVisualIn(new Pared2(), game.at(15, 7))
+		game.addVisualIn(new Pared2(), game.at(14, 7))
+		game.addVisualIn(new Pared2(), game.at(13, 7))
+		game.addVisualIn(new Pared2(), game.at(12, 7))
+		game.addVisualIn(new Pared2(), game.at(11, 7))
+		game.addVisualIn(new Pared2(), game.at(10, 7))
+		game.addVisualIn(new Pared2(), game.at(9, 7))
+		game.addVisualIn(new Pared2(), game.at(8, 7))
+		game.addVisualIn(new Pared2(), game.at(7, 7))
 		game.addVisualIn(new Pared2(), game.at(19, 5))
 		game.addVisualIn(new Pared2(), game.at(18, 5))
 		game.addVisualIn(new Pared2(), game.at(17, 5))
@@ -286,20 +303,24 @@ object nivel2 inherits Nivel{
 	}
 	
 	override method agregarItems(){
-		items.add(new Pocion())
-		items.add(new Pocion())
-		items.add(new Pocion())
-		items.add(new Espada())
-		items.add(new Armadura())
+		items.add(new Pocion(position= game.at(1,16)))
+		items.add(new Daga(position= game.at(3,8)))
+		items.add(new Escudo(position= game.at(2,17)))
 		items.add(puerta)
 	}
 	
-	override method setearEventos(principal){
-		game.onTick(1000, lobo.identity().toString() + "Persigue", {=> lobo.perseguiA(principal)})
-		game.onTick(1300, loboJefe.identity().toString() + "Persigue", {=> loboJefe.perseguiA(principal)})
+		override method setearEventos(principal){
+	game.onTick(1300, orco.identity().toString() + "Persigue", {=> orco.perseguiA(principal)})
+	game.onTick(400, lobo2.identity().toString() + "Persigue", {=> lobo2.perseguiA(principal)})
+	game.onTick(800, vampiro2.identity().toString() + "Persigue", {=> vampiro2.perseguiA(principal)})
+	game.onTick(800, vampiro.identity().toString() + "Persigue", {=> vampiro.perseguiA(principal)})
+	game.onTick(400, lobo.identity().toString() + "Persigue", {=> lobo.perseguiA(principal)})
 	
-		game.onTick(500, lobo.identity().toString() + "Golpea", {=> if(game.colliders(lobo).size() > 0) game.colliders(lobo).first().teChoco(lobo)})
-		game.onTick(650, loboJefe.identity().toString() +"Golpea", {=> if(game.colliders(loboJefe).size() > 0) game.colliders(loboJefe).first().teChoco(loboJefe)}) 
+	game.onTick(700, orco.identity().toString() + "Golpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
+	game.onTick(300, lobo2.identity().toString() + "Golpea", {=> if(game.colliders(lobo2).size() > 0) game.colliders(lobo2).first().teChoco(lobo2)})
+	game.onTick(500, vampiro2.identity().toString() + "Golpea", {=> if(game.colliders(vampiro2).size() > 0) game.colliders(vampiro2).first().teChoco(vampiro2)})
+	game.onTick(500, vampiro.identity().toString() +"Golpea", {=> if(game.colliders(vampiro).size() > 0) game.colliders(vampiro).first().teChoco(vampiro)}) 
+	game.onTick(300, lobo.identity().toString() + "Golpea", {=> if(game.colliders(lobo).size() > 0) game.colliders(lobo).first().teChoco(lobo)} )
 	}
 	
 	override method superado() = self.puerta().estoyAbierta()
