@@ -53,7 +53,7 @@ class Nivel{
 	
 	//PARA QUE LOS PERSONAJES DIGAN SUS ATRIBUTOS
 	method setearBarra(){
-		keyboard.space().onPressDo({ personajes.forEach({ x => if (x.estoyMuerto() == 0) game.say(x, "Vida: " + x.vida() + " Daño: " + x.danio()) }) })
+		keyboard.space().onPressDo({ personajes.forEach({ personaje => if (personaje.estoyMuerto() == 0) game.say(personaje, "Vida: " + personaje.vida() + " Daño: " + personaje.danio()) }) })
 	}
 	
 
@@ -73,6 +73,7 @@ class Nivel{
 	}
 	
 	method terminarJuego(){
+		game.addVisual(fondoJuegoPerdido)
 		game.schedule(3000, {=> game.stop()})
 	}
 }
@@ -515,6 +516,7 @@ object ganar{
 	method esFinal() = true 
 	
 	method terminarJuego(){
+		game.addVisual(fondoJuegoGanado)
 		game.schedule(3000, {=> game.stop()})
 	}
 }
@@ -554,8 +556,12 @@ class Pared3 inherits Paredes{ override method image() = "pared_3.png"}
 class ParedCoins inherits Paredes{ override method image() = "pared_coins.png"}
 class ParedLava inherits Paredes{ override method image() = "pared_lava.png"}
 
-object fondoDelJuego inherits Visual( image = "fondo.PNG",position = new Position(x=0,y=0) ){	}
-object fondoPantallaInicio inherits Visual( image = "PantallaPrincipal.png" , position = new Position(x=0,y=0)){}
+object fondoDelJuego inherits Visual( image = "fondo.PNG",position = game.origin() ){}
+object fondoPantallaInicio inherits Visual( image = "PantallaPrincipal.png" , position = game.origin()){}
+object fondoJuegoGanado inherits Visual(image = "youWin.png", position = game.origin()){}
+object fondoJuegoPerdido inherits Visual(image = "youLose.png", position = game.origin()){}
+
+
 //const inicioDelJuego = new Visual( image =  "Presentacion.png", position = game.at(1,1) 
 
 //const winVisual = new Visual( image = "winwin.png", position = game.origin())

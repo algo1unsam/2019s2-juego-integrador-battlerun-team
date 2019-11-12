@@ -16,12 +16,9 @@ program game {
 	
 	const juego = {nivel =>
 		if(nivel.esFinal()){
-				//game.removeTickEvent("pasar de nivel")
-				//game.removeTickEvent("perder juego")
-				game.addVisualIn("ganar.png", game.origin())
-				game.addVisual(principal)
-				game.say(principal, "Sos crack!")
 				nivel.terminarJuego()
+				game.removeTickEvent("perder juego")
+				game.removeTickEvent("pasar de nivel")
 				}
 				
 		nivel.setearTodo(principal)
