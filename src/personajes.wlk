@@ -1,5 +1,6 @@
 import wollok.game.*
 import cosas.*
+import hud.*
 
 
 /***************************************************************************************************/
@@ -10,7 +11,6 @@ class Personaje{
 	var property position
 	var property image 
 	var property estoyMuerto = 0	//Esta var sirve de flag para que no haga ciertas cosas estando muerto
-	
 	//PARA VER SI ES EL PERSONAJE PRINCIPAL O UN ENEMIGO
 	method soyNPC() = true
 	
@@ -35,6 +35,7 @@ class Personaje{
 	
 	method agregarVida(_vida){
 		vida += _vida
+		
 	}
 	
 	
@@ -71,7 +72,9 @@ class Personaje{
 
 class Principal inherits Personaje{
 	var puedoAtacar = 1 // Esta variable se usa de flag para un schedule en self.atacaA para no poder atacar muchas veces en poco tiempo
-	
+	var property coraHud = corazon
+	var property armorHud = armor
+	var property espadaHud = espada
 	override method soyNPC() = false
 	
 	//Con este metodo abrimos la puerta final
@@ -79,6 +82,28 @@ class Principal inherits Personaje{
 		puerta.teAbrio(self)
 	}
 	
+	override method agregarVida(_vida){
+		super(_vida)
+		coraHud.agregoCorazon(self)
+		
+	}
+	override method agregarArmadura(_armadura){
+		super(_armadura)
+		armorHud.agregoArmadura(self)
+	}
+	override method agregarDanio(_danio){
+		super(_danio)
+		espadaHud.agregoEspada(self)
+	}
+	
+	override method teChoco(alguien){
+		coraHud.conteoDeCorazones(coraHud.cantidadDeCorazones(self))
+		super(alguien)
+		if(coraHud.conteoDeCorazones()>coraHud.cantidadDeCorazones(self)){
+			coraHud.remuevoCorazon(self)
+		}
+		
+	}
 	//Paso intermedio hacia ".teAtaco(self)" para que sea mas legible y se agregan unas condiciones de ataque
 	//Con la tecla "x" (ver .wpgm) el personaje ataca al enemigo (tienen que estar en la misma posicion) si hay cualquier otra cosa que no sea el enemigo no hace nada
 	//Solo se puede atacar una vez cada 350ms, para que sea más parejo 

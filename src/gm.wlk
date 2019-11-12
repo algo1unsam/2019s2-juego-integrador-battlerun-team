@@ -123,6 +123,7 @@ object nivel1 inherits Nivel{
 	
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 1")
+		personaje.coraHud().dibujoCorazones(personaje)
 	}
 	
 	override method agregarEnemigos(){
@@ -222,13 +223,16 @@ object nivel2 inherits Nivel{
 	var vampiro2 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(13,1), image = "vampiro.png")
 	var lobo = new Enemigo(vida = 15, armadura = 0, danio = 15, position = game.at(10,4), image = "lobo.png")
 	var lobo2 = new Enemigo(vida = 150, armadura = 10, danio = 20, position = game.at(3,15), image = "lobo.png")
-	var orco = new Enemigo(vida = 150, armadura = 10, danio = 20, position = game.at(18,9), image = "orco_jefe.png")
+	var orco = new Enemigo(vida = 150, armadura = 10, danio = 20, position = game.at(19,9), image = "orco_jefe.png")
 	var property puerta = new Puerta( position = game.at(19,6))
 	
 
 	
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 2")
+		personaje.coraHud().dibujoCorazones(personaje)
+		personaje.armorHud().dibujoArmadura(personaje)
+		personaje.espadaHud().dibujoEspada(personaje)
 	}
 	
 	override method agregarEnemigos(){
@@ -306,7 +310,7 @@ object nivel2 inherits Nivel{
 		items.add(new Casco(position= game.at(9,13)))
 		items.add(new Espada(position= game.at(19,4)))
 		items.add(new Botas(position= game.at(10,6)))
-		items.add(new Escudo(position= game.at(2,17)))
+		items.add(new Escudo(position= game.at(2,16)))
 		items.add(puerta)
 	}
 	
@@ -353,6 +357,9 @@ object nivel3 inherits Nivel{
 	
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 3, FINAL!!!!")
+		personaje.coraHud().dibujoCorazones(personaje)
+		personaje.armorHud().dibujoArmadura(personaje)
+		personaje.espadaHud().dibujoEspada(personaje)
 	}
 	
 	override method agregarEnemigos(){

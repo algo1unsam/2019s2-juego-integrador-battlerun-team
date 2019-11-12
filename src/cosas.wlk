@@ -49,7 +49,7 @@ class Casco inherits Cosa{
 
 /***************************************************************************************************/
 class Escudo inherits Cosa{
-	var property armadura = 15
+	var property armadura = 40
 	var property image = "escudo_madera.png"
 	
 	override method teAgarro(alguien){
@@ -74,7 +74,7 @@ class Botas inherits Cosa{
 
 /***************************************************************************************************/
 class Daga inherits Cosa{
-	var property danio = 15
+	var property danio = 20
 	var property image = "daga.png"
 	
 	override method teAgarro(alguien){
@@ -86,7 +86,7 @@ class Daga inherits Cosa{
 
 /***************************************************************************************************/
 class Espada inherits Cosa{
-	var property danio = 35
+	var property danio = 60
 	var property image = "espada.png"
 	
 	override method teAgarro(alguien){
@@ -150,21 +150,6 @@ class Puerta inherits Cosa{
 
 
 /***************************************************************************************************/
-class CorazonHud{
-	var property position
-	var property vidaQueRepresenta
-	var property image = "peach.png"      //agregar asset
-	var property esAtravesable = false	
-	
-	method desaparezco(personaje){      //problema, una vez que el corazon desaparece el bloque vuelve a ser atavesable
-		if(personaje.vida()<vidaQueRepresenta){
-			game.removeVisual(self)
-			game.removeTickEvent(self.identity().toString() +"vida")
-		}	
-	}
-	
-	
-}
 
 
 /***************************************************************************************************/
