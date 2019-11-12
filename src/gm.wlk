@@ -192,7 +192,7 @@ object nivel1 inherits Nivel{
 	override method agregarItems(){
 		items.add(new Pocion(position= game.at(13,15)))
 		items.add(new Daga(position= game.at(3,8)))
-		items.add(new Escudo(position= game.at(2,17)))
+		items.add(new Escudo(position= game.at(17,2)))
 		items.add(puerta)
 	}
 	
@@ -303,8 +303,9 @@ object nivel2 inherits Nivel{
 	}
 	
 	override method agregarItems(){
-		items.add(new Pocion(position= game.at(1,16)))
-		items.add(new Daga(position= game.at(3,8)))
+		items.add(new Casco(position= game.at(9,13)))
+		items.add(new Espada(position= game.at(19,4)))
+		items.add(new Botas(position= game.at(10,6)))
 		items.add(new Escudo(position= game.at(2,17)))
 		items.add(puerta)
 	}
@@ -325,13 +326,179 @@ object nivel2 inherits Nivel{
 	
 	override method superado() = self.puerta().estoyAbierta()
 
-	override method siguienteNivel() = ganar
+	override method siguienteNivel() = nivel3
 	
 }
 
 
 /****************************************************************************************************************************************/
 
+
+object nivel3 inherits Nivel{
+	
+	var vampiro = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(7,14), image = "vampiro.png")
+	var vampiro2 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(8,13), image = "vampiro.png")
+	var vampiro3 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(9,12), image = "vampiro.png")
+	var vampiro4 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(10,11), image = "vampiro.png")
+	var orco = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(14,16), image = "orco_jefe.png")
+	var orco2 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(1,13), image = "orco_jefe.png")
+	var zombie = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(5,6), image = "zombie.png")
+	var zombie2 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(8,4), image = "zombie.png")
+	var zombie3 = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(9,1), image = "zombie.png")
+	var dragon = new Enemigo(vida = 10, armadura = 0, danio = 15, position = game.at(17,13), image = "dragon.png")
+	
+
+	var property puerta = new Puerta( image="princesa.png", position = game.at(19,1))
+	
+	
+	override method nivelNumero(personaje){
+		game.say(personaje, "NIVEL 3, FINAL!!!!")
+	}
+	
+	override method agregarEnemigos(){
+		enemigos.add(vampiro)
+		enemigos.add(vampiro2)
+		enemigos.add(vampiro3)
+		enemigos.add(vampiro4)
+		enemigos.add(orco)
+		enemigos.add(orco2)
+		enemigos.add(zombie)
+		enemigos.add(zombie2)
+		enemigos.add(zombie3)
+		enemigos.add(dragon)
+		
+	}
+	
+	override method agregarMarcos(){
+		
+		game.addVisualIn(new ParedLava(), game.at(2,2))
+		game.addVisualIn(new ParedLava(), game.at(4,2))
+		game.addVisualIn(new ParedLava(), game.at(6,2))
+		game.addVisualIn(new ParedLava(), game.at(8,2))
+		game.addVisualIn(new ParedLava(), game.at(10,2))
+		game.addVisualIn(new ParedLava(), game.at(12,2))
+		game.addVisualIn(new ParedLava(), game.at(14,2))
+		game.addVisualIn(new ParedLava(), game.at(3,3))
+		game.addVisualIn(new ParedLava(), game.at(5,3))
+		game.addVisualIn(new ParedLava(), game.at(7,3))
+		game.addVisualIn(new ParedLava(), game.at(9,3))
+		game.addVisualIn(new ParedLava(), game.at(11,3))
+		game.addVisualIn(new ParedLava(), game.at(13,3))
+		game.addVisualIn(new ParedLava(), game.at(15,3))
+		game.addVisualIn(new ParedLava(), game.at(3,5))
+		game.addVisualIn(new ParedLava(), game.at(5,5))
+		game.addVisualIn(new ParedLava(), game.at(7,5))
+		game.addVisualIn(new ParedLava(), game.at(9,5))
+		game.addVisualIn(new ParedLava(), game.at(11,5))
+		game.addVisualIn(new ParedLava(), game.at(13,5))
+		game.addVisualIn(new ParedLava(), game.at(15,5))
+		game.addVisualIn(new ParedLava(), game.at(15,6))
+		game.addVisualIn(new ParedLava(), game.at(13,6))
+		game.addVisualIn(new ParedLava(), game.at(11,6))
+		game.addVisualIn(new ParedLava(), game.at(4,7))
+		game.addVisualIn(new ParedLava(), game.at(6,7))
+		game.addVisualIn(new ParedLava(), game.at(8,7))
+		game.addVisualIn(new Pared3(), game.at(2,6))
+		game.addVisualIn(new Pared3(), game.at(2,7))
+		game.addVisualIn(new Pared3(), game.at(2,8))
+		game.addVisualIn(new Pared3(), game.at(2,9))
+		game.addVisualIn(new Pared3(), game.at(2,10))
+		game.addVisualIn(new Pared3(), game.at(2,11))
+		game.addVisualIn(new Pared3(), game.at(2,12))
+		game.addVisualIn(new Pared3(), game.at(2,13))
+		game.addVisualIn(new Pared3(), game.at(2,14))
+		game.addVisualIn(new Pared3(), game.at(2,15))
+		game.addVisualIn(new Pared3(), game.at(2,16))
+		game.addVisualIn(new Pared3(), game.at(3,13))
+		game.addVisualIn(new Pared3(), game.at(4,13))
+		game.addVisualIn(new Pared3(), game.at(5,13))
+		game.addVisualIn(new Pared3(), game.at(3,15))
+		game.addVisualIn(new Pared3(), game.at(4,15))
+		game.addVisualIn(new Pared3(), game.at(5,15))
+		game.addVisualIn(new Pared3(), game.at(6,15))
+		game.addVisualIn(new Pared3(), game.at(7,15))
+		game.addVisualIn(new Pared3(), game.at(8,15))
+		game.addVisualIn(new Pared3(), game.at(9,15))
+		game.addVisualIn(new Pared3(), game.at(10,15))
+		game.addVisualIn(new Pared3(), game.at(11,15))
+		game.addVisualIn(new Pared3(), game.at(12,15))
+		game.addVisualIn(new Pared3(), game.at(16,1))
+		game.addVisualIn(new Pared3(), game.at(16,2))
+		game.addVisualIn(new Pared3(), game.at(16,3))
+		game.addVisualIn(new Pared3(), game.at(16,4))
+		game.addVisualIn(new Pared3(), game.at(16,5))
+		game.addVisualIn(new Pared3(), game.at(16,6))
+		game.addVisualIn(new Pared3(), game.at(16,7))
+		game.addVisualIn(new Pared3(), game.at(16,8))
+		game.addVisualIn(new Pared3(), game.at(16,9))
+		game.addVisualIn(new Pared3(), game.at(16,10))
+		game.addVisualIn(new Pared3(), game.at(16,11))
+		game.addVisualIn(new Pared3(), game.at(16,12))
+		game.addVisualIn(new Pared3(), game.at(16,13))
+		game.addVisualIn(new Pared3(), game.at(16,14))
+		game.addVisualIn(new Pared3(), game.at(12,14))
+		game.addVisualIn(new Pared3(), game.at(12,13))
+		game.addVisualIn(new Pared3(), game.at(12,12))
+		game.addVisualIn(new Pared3(), game.at(12,11))
+		game.addVisualIn(new Pared3(), game.at(12,10))
+		game.addVisualIn(new Pared3(), game.at(12,9))
+		game.addVisualIn(new Pared3(), game.at(12,8))
+		game.addVisualIn(new ParedCoins(), game.at(17,14))
+		game.addVisualIn(new ParedCoins(), game.at(17,10))
+		game.addVisualIn(new ParedCoins(), game.at(18,10))
+		game.addVisualIn(new ParedCoins(), game.at(18,12))
+		game.addVisualIn(new ParedCoins(), game.at(19,12))
+		game.addVisualIn(new ParedCoins(), game.at(18,8))
+		game.addVisualIn(new ParedCoins(), game.at(19,8))
+		game.addVisualIn(new ParedCoins(), game.at(17,6))
+		game.addVisualIn(new ParedCoins(), game.at(18,6))
+		game.addVisualIn(new ParedCoins(), game.at(18,4))
+		game.addVisualIn(new ParedCoins(), game.at(19,4))
+		game.addVisualIn(new ParedCoins(), game.at(17,2))
+		game.addVisualIn(new ParedCoins(), game.at(17,1))
+		
+	}
+	
+	
+	override method agregarItems(){
+		items.add(new Sable(position= game.at(1,16)))
+		items.add(new Armadura(position= game.at(3,16)))
+		items.add(new Pocion(position= game.at(3,14)))
+		items.add(puerta)
+	}
+	
+	
+	override method setearEventos(principal){
+	game.onTick(600, vampiro.identity().toString() + "Persigue", {=> vampiro.perseguiA(principal)})
+	game.onTick(600, vampiro2.identity().toString() + "Persigue", {=> vampiro2.perseguiA(principal)})
+	game.onTick(600, vampiro3.identity().toString() + "Persigue", {=> vampiro3.perseguiA(principal)})
+	game.onTick(600, vampiro4.identity().toString() + "Persigue", {=> vampiro4.perseguiA(principal)})
+	game.onTick(1000, orco.identity().toString() + "Persigue", {=> orco.perseguiA(principal)})
+	game.onTick(1000, orco2.identity().toString() + "Persigue", {=> orco2.perseguiA(principal)})
+	game.onTick(1300, zombie.identity().toString() + "Persigue", {=> zombie.perseguiA(principal)})
+	game.onTick(1300, zombie2.identity().toString() + "Persigue", {=> zombie2.perseguiA(principal)})
+	game.onTick(1300, zombie3.identity().toString() + "Persigue", {=> zombie3.perseguiA(principal)})
+	game.onTick(200, dragon.identity().toString() + "Persigue", {=> dragon.perseguiA(principal)})
+	
+	game.onTick(700, vampiro.identity().toString() + "Golpea", {=> if(game.colliders(vampiro).size() > 0) game.colliders(vampiro).first().teChoco(vampiro)})
+	game.onTick(700, vampiro2.identity().toString() + "Golpea", {=> if(game.colliders(vampiro2).size() > 0) game.colliders(vampiro2).first().teChoco(vampiro2)})
+	game.onTick(700, vampiro3.identity().toString() + "Golpea", {=> if(game.colliders(vampiro3).size() > 0) game.colliders(vampiro3).first().teChoco(vampiro3)})
+	game.onTick(700, vampiro4.identity().toString() + "Golpea", {=> if(game.colliders(vampiro4).size() > 0) game.colliders(vampiro4).first().teChoco(vampiro4)})
+	game.onTick(700, orco.identity().toString() + "Golpea", {=> if(game.colliders(orco).size() > 0) game.colliders(orco).first().teChoco(orco)})
+	game.onTick(700, zombie.identity().toString() + "Golpea", {=> if(game.colliders(zombie).size() > 0) game.colliders(zombie).first().teChoco(zombie)})
+	game.onTick(700, zombie2.identity().toString() + "Golpea", {=> if(game.colliders(zombie2).size() > 0) game.colliders(zombie2).first().teChoco(zombie2)})
+	game.onTick(700, zombie3.identity().toString() + "Golpea", {=> if(game.colliders(zombie3).size() > 0) game.colliders(zombie3).first().teChoco(zombie3)})
+	game.onTick(700, dragon.identity().toString() + "Golpea", {=> if(game.colliders(dragon).size() > 0) game.colliders(dragon).first().teChoco(dragon)})
+	
+	
+	}
+	
+	override method superado() = self.puerta().estoyAbierta()
+	
+	override method siguienteNivel() = ganar
+}
+
+/****************************************************************************************************************************************/
 object ganar{
 	
 	method esFinal() = true 
@@ -341,7 +508,25 @@ object ganar{
 	}
 }
 
+/************************************TANTEADOR************************************************/
 
+object score{
+	const posicionInicial = new Position(x=22,y=5)
+	
+	method dibujarItem(elemento,posicion){
+		game.addVisual(new Visual(image = elemento.image(),position = posicion))
+		game.addVisualIn(numberConverter.getNumberImage(elemento.score().div(10)),posicion.right(1))
+		game.addVisualIn(numberConverter.getNumberImage(elemento.score() % 10),posicion.right(2))
+		
+	}
+
+}
+
+object numberConverter{
+    method getNumberImage(number){
+    	return new Visual(image= "nro" + number + ".png")
+    }
+}
 
 /****************************************************************************************************************************************/
 

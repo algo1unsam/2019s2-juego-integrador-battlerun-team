@@ -1,14 +1,17 @@
 # BATTLERUN !!!
 
 
-![reemplazar por una animación del juego](https://d33wubrfki0l68.cloudfront.net/1ba3cf64b23a4ac786d7432121abbd782794730c/ce83b/documentacion/conceptos/images/wollokcharacter.gif)
+(https://s5.gifyu.com/images/tmp.gif)
 
 ### Resumen:
 
-	Nos encontramos bajo el mando de nuestro heroe, con la unica mision de rescatar a nuestra princesa y no morir en el intento.
+	Nos encontramos bajo el mando de nuestro heroe, con la unica mision de rescatar a nuestra princesa 
+	y no morir en el intento.
 
-	Tendremos que ir avanzando a lo largo de 3 niveles, en los cuales nos enfrentaremos a enemigos cada vez mas peligrosos. 
-	Para que podamos llevar a cabo nuestra mision, iremos encontrando "objetos" que haran mas fuerte a nuestro personaje.
+	Tendremos que ir avanzando a lo largo de 3 niveles, en los cuales 
+	nos enfrentaremos a enemigos cada vez mas peligrosos. 
+	Para que podamos llevar a cabo nuestra mision, iremos encontrando "objetos" 
+	que haran mas fuerte a nuestro personaje.
 
 ### Instrucciones:
 
@@ -19,6 +22,7 @@
 	Desplazamiento: la flecha de teclado.
 	Agarrar Item: "A"
 	Atacar Enemigo: "X"
+	Entrar Puerta: "ENTER"
 	
 
 

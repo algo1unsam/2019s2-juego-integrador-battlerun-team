@@ -4,12 +4,13 @@ import cosas.*
 import gm.*
 
 program game {
+	
 	/********************************************* CONFIG *********************************************/
 	game.title("BattleRun")
 	game.height(18)
 	game.width(26)
 	
-	var nivelActual = nivel2
+	var nivelActual = nivel3
 	
 	var principal = new Principal(vida = 500, armadura = 0, danio = 15, position = game.at(1,1), image = "PLAYER.png")
 	
@@ -50,40 +51,4 @@ program game {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-/* 
-		
-		
-		
-		var corazon1 = new CorazonHud(position = game.at(23, 8), vidaQueRepresenta = 1)
-		var corazon2 = new CorazonHud(position = game.at(24, 8), vidaQueRepresenta = 500)
-		var corazon3 = new CorazonHud(position = game.at(25, 8), vidaQueRepresenta = 1000)
-			/********************************************* VISUALS *********************************************/
-/*		game.addVisual(corazon1)
-		game.addVisual(corazon2)
-		game.addVisual(corazon3)
-			/*****CONFIG DE LOS NPC */
-			// El hud
-/*		game.onTick(10, corazon1.identity().toString() + "vida", {=> corazon1.desaparezco(personaje)})
-		game.onTick(10, corazon2.identity().toString() + "vida", {=> corazon2.desaparezco(personaje)})
-		game.onTick(10, corazon3.identity().toString() + "vida", {=> corazon3.desaparezco(personaje)})
-			/********************************************* KEYBOARD *********************************************/
-// *actions
-			// CON EL ESPACIO, TODOS LOS PERSONAJES SOBRE EL TABLERO DICEN SUS ATRIBUTOS ACTUALES (si no estan muertos)
-			/*keyboard.space().onPressDo ({if(personaje.estoyMuerto() == 0) game.say(personaje,  "Vida: " + personaje.vida() + " Daño: " + personaje.danio())})
-			 * keyboard.space().onPressDo ({if(insecto.estoyMuerto() == 0) game.say(insecto,  "Vida: " + insecto.vida() + " Daño: " + insecto.danio())})
-			 * keyboard.space().onPressDo ({if(orco.estoyMuerto() == 0) game.say(orco,  "Vida: " + orco.vida() + " Daño: " + orco.danio())})
-			 */
-			/********************************************* INTERACTIONS *********************************************/
-			// EL ENEMIGO GOLPEA Y AGARRA(SEGUN LO QUE SE ECUENTRE) AUTOMATICAMENTE CUANDO CHOCA CON UN OBJETO.
-			// LOS ENEMIGOS SE PUEDEN ATACAR ENTRE ELLOS AL CHOCARSE
-			// game.onCollideDo (orco, { algo => algo.teChoco(insecto) })
-			/********************************************* START *********************************************/
 		
