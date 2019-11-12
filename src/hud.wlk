@@ -13,7 +13,7 @@ object corazon{
 		return (principal.vida().div(250)) +1
 	}
 	
-	method dibujoCorazones(principal){
+	method dibujoCorazones(principal){  // se usa al agarrar
 			posX=21
 		(0..self.cantidadDeCorazones(principal)-1).forEach{
 			iteracion => var cora = new Pocion(position = game.at(posX,posY))
@@ -22,13 +22,13 @@ object corazon{
 		}
 	}
 	
-	method agregoCorazon(principal){
+	method agregoCorazon(principal){  // se usa al agarrar
 		var cora = new Pocion(position=game.at(posX,posY))
 		game.addVisual(cora)
 		posX=posX+1
 	}
 	
-	method remuevoCorazon(principal){
+	method remuevoCorazon(principal){ // se usa al pasar de nivel para dibujar todo de 0
 		posX=posX-1
 		game.removeVisual(game.getObjectsIn(game.at(posX,posY)).get(0))
 	}
@@ -38,13 +38,13 @@ object corazon{
 
 
 object armor{
-	var estadistica = [20,40]
+	var estadistica = [30,60]
 	var posX = 24
 	var posY = 8 
 	var index = 0
 	
-	method agregoArmadura(principal){
-		if(principal.armadura() > estadistica.get(index)){
+	method agregoArmadura(principal){  // se usa al agarrar
+		if(principal.armadura() > estadistica.get(index)  && index < 2){
 		var armadura = new Armadura(position=game.at(posX,posY))
 		game.addVisual(armadura)
 		posX = posX+1
@@ -53,7 +53,7 @@ object armor{
 		
 	}
 	
-	method dibujoArmadura(principal){
+	method dibujoArmadura(principal){ // se usa al pasar de nivel para dibujar todo de 0
 			posX=24
 		(0..index).forEach{
 			iteracion =>if (iteracion>0){
@@ -73,7 +73,7 @@ object espada{
 	var posY = 9 
 	var index = 0
 	
-	method agregoEspada(principal){
+	method agregoEspada(principal){  // se usa al agarrar 
 		if(principal.danio() > estadistica.get(index)){
 		var espada = new Espada(position=game.at(posX,posY))
 		game.addVisual(espada)
@@ -83,7 +83,7 @@ object espada{
 		
 	}
 	
-	method dibujoEspada(principal){
+	method dibujoEspada(principal){ // se usa al pasar de nivel para dibujar todo de 0
 			posX=24
 		(0..index).forEach{
 			iteracion =>if (iteracion>0){
@@ -92,6 +92,21 @@ object espada{
 			posX=posX+1
 			
 			}
+		}
+	}
+}
+
+object _inventario{
+	method agregoInventario(principal){ // se usa al agarrar 
+		game.addVisual(principal.inventario().last()) 
+	}
+	
+	method dibujoVarios(principal){
+		(0..principal.inventario().size()-1).forEach{
+			iteracion => if(principal.inventario().size()>0){
+				game.addVisual(principal.inventario().get(iteracion))
+			}
+			
 		}
 	}
 }

@@ -125,6 +125,7 @@ object nivel1 inherits Nivel{
 	override method nivelNumero(personaje){
 		game.say(personaje, "NIVEL 1")
 		personaje.coraHud().dibujoCorazones(personaje)
+		personaje.inventarioHud().dibujoVarios(personaje)
 	}
 	
 	override method agregarEnemigos(){
@@ -234,6 +235,7 @@ object nivel2 inherits Nivel{
 		personaje.coraHud().dibujoCorazones(personaje)
 		personaje.armorHud().dibujoArmadura(personaje)
 		personaje.espadaHud().dibujoEspada(personaje)
+		personaje.inventarioHud().dibujoVarios(personaje)
 	}
 	
 	override method agregarEnemigos(){
@@ -361,6 +363,7 @@ object nivel3 inherits Nivel{
 		personaje.coraHud().dibujoCorazones(personaje)
 		personaje.armorHud().dibujoArmadura(personaje)
 		personaje.espadaHud().dibujoEspada(personaje)
+		personaje.inventarioHud().dibujoVarios(personaje)
 	}
 	
 	override method agregarEnemigos(){

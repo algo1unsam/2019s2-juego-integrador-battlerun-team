@@ -59,7 +59,7 @@ class Personaje{
 	}
 	
 		
-	method danioRecibidoPor(alguien) = if((alguien.danio() - armadura) >= 0) alguien.danio() - armadura else 0
+	method danioRecibidoPor(alguien) = if((alguien.danio() - armadura * 0.1) >= 0) alguien.danio() - armadura * 0.1 else 0
 	
 	method teAtaco(alguien){
 		if (self.danioRecibidoPor(alguien) > 0) vida -= self.danioRecibidoPor(alguien)
@@ -75,6 +75,8 @@ class Principal inherits Personaje{
 	var property coraHud = corazon
 	var property armorHud = armor
 	var property espadaHud = espada
+	var property inventarioHud = _inventario
+	var property inventario = []
 	override method soyNPC() = false
 	
 	//Con este metodo abrimos la puerta final
@@ -90,10 +92,12 @@ class Principal inherits Personaje{
 	override method agregarArmadura(_armadura){
 		super(_armadura)
 		armorHud.agregoArmadura(self)
+		_inventario.agregoInventario(self)
 	}
 	override method agregarDanio(_danio){
 		super(_danio)
 		espadaHud.agregoEspada(self)
+		_inventario.agregoInventario(self)
 	}
 	
 	override method teChoco(alguien){
@@ -119,6 +123,8 @@ class Principal inherits Personaje{
 /***************************************************************************************************/
 
 class Enemigo inherits Personaje{
+	
+	var property inventario = [] // no tiene uso pero es necesario para no romper polimorfimo 
 	
 	//Método hecho para más polimorfismo y que no se rompa todo, sirve para agarrar cosas. En este caso no hace nada
 	method teAgarro(alguien){}

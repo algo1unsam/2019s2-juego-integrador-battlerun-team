@@ -28,9 +28,13 @@ class Armadura inherits Cosa{
 	var property armadura = 20
 	var property image = "armadura.png"
 	
+	method posHud() = game.at(23,15)
+	
 	override method teAgarro(alguien){
-		alguien.agregarArmadura(armadura)
 		super(alguien)
+		var armor = new Armadura(position = self.posHud())
+		alguien.inventario().add(armor)
+		alguien.agregarArmadura(armadura)
 	}
 }
 
@@ -40,21 +44,29 @@ class Casco inherits Cosa{
 	var property armadura = 5
 	var property image = "casco.png"
 	
+	method posHud() = game.at(23,16)
+	
 	override method teAgarro(alguien){
-		alguien.agregarArmadura(armadura)
 		super(alguien)
+		var casc = new Casco(position = self.posHud())
+		alguien.inventario().add(casc)
+		alguien.agregarArmadura(armadura)
 	}
 }
 
 
 /***************************************************************************************************/
 class Escudo inherits Cosa{
-	var property armadura = 40
+	var property armadura = 20
 	var property image = "escudo_madera.png"
 	
+	method posHud() =game.at(24,13)
+	
 	override method teAgarro(alguien){
-		alguien.agregarArmadura(armadura)
 		super(alguien)
+		var escu = new Escudo(position= self.posHud())
+		alguien.inventario().add(escu)
+		alguien.agregarArmadura(armadura)
 	}
 }
 
@@ -62,11 +74,15 @@ class Escudo inherits Cosa{
 /***************************************************************************************************/
 class Botas inherits Cosa{
 	var property armadura = 5
-	var property image = "armadura.png"
+	var property image = "botas.png"
+	
+	method posHud() = game.at(23,11)
 	
 	override method teAgarro(alguien){
-		alguien.agregarArmadura(armadura)
 		super(alguien)
+		var bota = new Botas(position = self.posHud())
+		alguien.inventario().add(bota)
+		alguien.agregarArmadura(armadura)
 	}
 }
 
@@ -77,33 +93,43 @@ class Daga inherits Cosa{
 	var property danio = 20
 	var property image = "daga.png"
 	
+	method posHud() = game.at(22,13)
 	override method teAgarro(alguien){
-		alguien.agregarDanio(danio)
 		super(alguien)
+		var dag = new Daga(position = self.posHud())
+		alguien.inventario().add(dag)
+		alguien.agregarDanio(danio)
 	}
 }
 
 
 /***************************************************************************************************/
 class Espada inherits Cosa{
-	var property danio = 60
+	var property danio = 25
 	var property image = "espada.png"
 	
+	method posHud() =  game.at(22,13)
 	override method teAgarro(alguien){
-		alguien.agregarDanio(danio)
 		super(alguien)
+		var espa = new Espada(position = self.posHud())
+		alguien.inventario().add(espa)
+		alguien.agregarDanio(danio)
 	}
 }
 
 
 /***************************************************************************************************/
 class Sable inherits Cosa{
-	var property danio = 45
+	var property danio = 30
 	var property image = "sable.png"
 	
+	method posHud() =  game.at(22,13)
 	override method teAgarro(alguien){
-		alguien.agregarDanio(danio)
 		super(alguien)
+		var sabl = new Sable(position = self.posHud())
+		alguien.inventario().add(sabl)
+		alguien.agregarDanio(danio)
+		
 	}
 }
 
